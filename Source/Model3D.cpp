@@ -7,7 +7,7 @@ std::string PAG::Model3D::CHECKER_PATTERN_PATH = "Assets/Textures/Checker.png";
 
 // Public methods
 
-PAG::Model3D::Model3D(): _scene(nullptr), _modelMatrix(1.0f)
+PAG::Model3D::Model3D(): _modelMatrix(1.0f)
 {
 }
 
@@ -74,39 +74,6 @@ void PAG::Model3D::draw(RenderingShader* shader, MatrixRenderInformation* matrix
     }
 }
 
-PAG::Model3D* PAG::Model3D::loadModelOBJ(const std::string& path)
-{
-    std::string binaryFile = path.substr(0, path.find_last_of('.')) + BINARY_EXTENSION;
-
-    if (std::filesystem::exists(binaryFile))
-    {
-        this->loadModelBinaryFile(binaryFile);
-    }
-    else
-    {
-        _scene = _assimpImporter.ReadFile(path, aiProcess_JoinIdenticalVertices | aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_CalcTangentSpace);
-
-        if (!_scene || _scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !_scene->mRootNode)
-        {
-            std::cout << "ERROR::ASSIMP::" << _assimpImporter.GetErrorString() << std::endl;
-            return this;
-        }
-
-        std::string shortName = _scene->GetShortFilename(path.c_str());
-        std::string folder = path.substr(0, path.length() - shortName.length());
-
-        this->processNode(_scene->mRootNode, _scene, folder);
-        this->writeBinaryFile(binaryFile);
-    }
-
-    for (auto& component : _components)
-    {
-        this->buildVao(component.get());
-    }
-
-    return this;
-}
-
 void PAG::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
 {
     AABB aabb = this->getAABB();
@@ -127,10 +94,6 @@ void PAG::Model3D::setTexture(const vec3& color)
     }
 }
 
-void PAG::Model3D::setTexture(Texture* texture)
-{
-}
-
 // Private methods
 
 void PAG::Model3D::buildVao(Component* component)
@@ -141,18 +104,6 @@ void PAG::Model3D::buildVao(Component* component)
     vao->setIBOData(VAO::IBO_LINE, component->_indices[VAO::IBO_LINE]);
     vao->setIBOData(VAO::IBO_TRIANGLE, component->_indices[VAO::IBO_TRIANGLE]);
     component->_vao = vao;
-}
-
-PAG::Texture* PAG::Model3D::getTexture(const vec4& color, TextureList* textureList)
-{
-    Texture* texture = nullptr;
-
-    if (!(texture = textureList->getTexture(color)))
-    {
-        texture = new Texture(color);
-    }
-    
-    return texture;
 }
 
 void PAG::Model3D::loadModelBinaryFile(const std::string& path)
@@ -191,63 +142,6 @@ void PAG::Model3D::loadModelBinaryFile(const std::string& path)
 
         _components[compIdx] = std::unique_ptr<Component>(component);
         _aabb.update(_components[compIdx]->_aabb);
-    }
-}
-
-PAG::Model3D::Component* PAG::Model3D::processMesh(aiMesh* mesh, const aiScene* scene, const std::string& folder)
-{
-    std::vector<VAO::Vertex> vertices (mesh->mNumVertices);
-    std::vector<GLuint> indices (mesh->mNumFaces * 4);
-    AABB aabb;
-
-    // Vertices
-    int numVertices = static_cast<int>(mesh->mNumVertices);
-
-    for (int i = 0; i < numVertices; i++)
-    {
-        VAO::Vertex vertex;
-        vertex._position = vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
-        vertex._normal = vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
-
-        if (mesh->mTangents) vertex._tangent = vec3(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
-        if (mesh->mBitangents) vertex._bitangent = vec3(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
-        if (mesh->mTextureCoords[0]) vertex._textCoord = vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
-
-        vertices[i] = vertex;
-        aabb.update(vertex._position);
-    }
-
-    // Indices
-    for (unsigned int i = 0; i < mesh->mNumFaces; i++)
-    {
-        aiFace face = mesh->mFaces[i];
-        for (unsigned int j = 0; j < face.mNumIndices; j++)
-            indices[i * 4 + j] = face.mIndices[j];
-
-        indices[i * 4 + 3] = RESTART_PRIMITIVE_INDEX;
-    }
-
-    Component* component = new Component;
-    component->_vertices = std::move(vertices);
-    component->_indices[VAO::IBO_TRIANGLE] = std::move(indices);
-    component->_aabb = std::move(aabb);
-    component->completeTopology();
-
-    return component;
-}
-
-void PAG::Model3D::processNode(aiNode* node, const aiScene* scene, const std::string& folder)
-{
-    for (unsigned int i = 0; i < node->mNumMeshes; i++)
-    {
-        aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-        _components.push_back(std::unique_ptr<Component>(this->processMesh(mesh, scene, folder)));
-        _aabb.update(_components[_components.size() - 1]->_aabb);
-    }
-
-    for (unsigned int i = 0; i < node->mNumChildren; i++)
-    {
-        this->processNode(node->mChildren[i], scene, folder);
     }
 }
 

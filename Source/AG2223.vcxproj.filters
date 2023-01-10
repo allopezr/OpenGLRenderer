@@ -165,6 +165,9 @@
     <ClCompile Include="AABB.cpp">
       <Filter>Archivos de origen\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="DrawMesh.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fonts\lato.hpp">
@@ -288,6 +291,9 @@
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="ChronoUtilities.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawMesh.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
   </ItemGroup>

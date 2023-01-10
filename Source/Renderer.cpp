@@ -2,6 +2,7 @@
 #include "Renderer.h"
 
 #include "ChronoUtilities.h"
+#include "DrawMesh.h"
 #include "InputManager.h"
 #include "ShaderProgramDB.h"
 
@@ -64,7 +65,7 @@ PAG::Renderer::~Renderer()
 
 void PAG::Renderer::createModels()
 {
-    auto model = (new Model3D())->loadModelOBJ("Assets/Models/Ajax.obj");
+    auto model = (new DrawMesh())->loadModelOBJ("Assets/Models/Ajax.obj");
     model->moveGeometryToOrigin(model->getModelMatrix(), 10.0f);
     _content->addNewModel(model);
 }

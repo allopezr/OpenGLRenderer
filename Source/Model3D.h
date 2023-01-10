@@ -73,17 +73,12 @@ namespace PAG
 
 	protected:
 		AABB										_aabb;
-		Assimp::Importer							_assimpImporter;
 		std::vector<std::unique_ptr<Component>>		_components;
 		mat4										_modelMatrix;
-		const aiScene*								_scene;
 
 	protected:
 		void buildVao(Component* component);
-		PAG::Texture* getTexture(const vec4& color, TextureList* textureList);
 		void loadModelBinaryFile(const std::string& path);
-		Component* processMesh(aiMesh* mesh, const aiScene* scene, const std::string& folder);
-		void processNode(aiNode* node, const aiScene* scene, const std::string& folder);
 		void writeBinaryFile(const std::string& path);
 
 	public:
@@ -94,11 +89,9 @@ namespace PAG
 		virtual void draw(RenderingShader* shader, MatrixRenderInformation* matrixInformation, ApplicationState* appState, GLuint primitive);
 		AABB getAABB() { return _aabb.dot(_modelMatrix); }
 		mat4 getModelMatrix() { return _modelMatrix; }
-		Model3D* loadModelOBJ(const std::string& path);
 		void moveGeometryToOrigin(const mat4& origMatrix = mat4(1.0f), float maxScale = FLT_MAX);
 		void setModelMatrix(const mat4& modelMatrix) { _modelMatrix = modelMatrix; }
 		void setTexture(const vec3& color);
-		void setTexture(Texture* texture);
 	};
 }
 

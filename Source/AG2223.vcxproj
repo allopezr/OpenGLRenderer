@@ -167,6 +167,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraGuiAdapter.cpp" />
     <ClCompile Include="CameraProjection.cpp" />
+    <ClCompile Include="DrawMesh.cpp" />
     <ClCompile Include="FBO.cpp" />
     <ClCompile Include="FBOScreenshot.cpp" />
     <ClCompile Include="Fonts\font_awesome.cpp">
@@ -318,6 +319,7 @@
     <ClInclude Include="CameraGuiAdapter.h" />
     <ClInclude Include="CameraProjection.h" />
     <ClInclude Include="ChronoUtilities.h" />
+    <ClInclude Include="DrawMesh.h" />
     <ClInclude Include="FBO.h" />
     <ClInclude Include="FBOScreenshot.h" />
     <ClInclude Include="Fonts\font_awesome.hpp" />

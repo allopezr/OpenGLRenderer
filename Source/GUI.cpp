@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GUI.h"
 
+#include "DrawMesh.h"
 #include "Fonts/font_awesome.hpp"
 #include "Fonts/lato.hpp"
 #include "Fonts/IconsFontAwesome5.h"
@@ -95,7 +96,7 @@ void PAG::GUI::processSelectedFile(FileDialog fileDialog, const std::string& fil
 {
 	if (fileDialog == FileDialog::OPEN_MESH)
 	{
-		Model3D* model = (new Model3D())->loadModelOBJ(filename);
+		Model3D* model = (new DrawMesh())->loadModelOBJ(filename);
 		model->moveGeometryToOrigin();
 		sceneContent->addNewModel(model);
 	}
