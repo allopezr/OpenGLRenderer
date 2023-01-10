@@ -7,7 +7,7 @@
  * Created on 5 de enero de 2021, 14:11
  */
 
-#include "Geometry/Triangle.h"
+#include "Triangle.h"
 #include "Model3D.h"
 
 

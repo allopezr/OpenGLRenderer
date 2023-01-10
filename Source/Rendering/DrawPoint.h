@@ -7,7 +7,7 @@
  *  Created on 14 de enero de 2021, 15:02
  */
 
-#include "Geometry/Point.h"
+#include "Point.h"
 #include "Model3D.h"
 
 namespace PAG

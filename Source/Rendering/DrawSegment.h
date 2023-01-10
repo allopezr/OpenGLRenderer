@@ -7,7 +7,7 @@
  *  Created on 19 de enero de 2021, 13:10
  */
 
-#include "Geometry/SegmentLine.h"
+#include "SegmentLine.h"
 #include "Model3D.h"
 
 namespace PAG

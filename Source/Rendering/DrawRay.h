@@ -7,7 +7,7 @@
  * Created on 19 de enero de 2021, 20:00
  */
 
-#include "Geometry/RayLine.h"
+#include "RayLine.h"
 #include "Model3D.h"
 
 namespace PAG

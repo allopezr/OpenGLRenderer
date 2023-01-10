@@ -7,7 +7,7 @@
  * Created on 20 de enero de 2021, 12:18
  */
 
-#include "Geometry/PolygonGeo.h"
+#include "PolygonGeo.h"
 #include "Model3D.h"
 
 namespace PAG

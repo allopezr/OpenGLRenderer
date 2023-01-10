@@ -7,7 +7,7 @@
  * Created on 20 de enero de 2021, 13:29
  */
 
-#include "Geometry/PointCloud.h"
+#include "PointCloud.h"
 #include "Model3D.h"
 
 namespace PAG
