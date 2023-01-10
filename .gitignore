@@ -30,3 +30,28 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio
+*.ipch
+.vs/*
+x64/*
+*/x64/*
+x86/*
+*/x86/*
+*.pdb
+*.tlog
+
+# Models
+*.bin
+*.mtl
+*.png
+*.jpeg
+*.jpg
+*.txt
+*.zip
+*.gltf
+*.tif
+*.tiff
+*.md5anim
+*.md5mesh
+*.psd
