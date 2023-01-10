@@ -2,9 +2,9 @@
 #include "GUI.h"
 
 #include "DrawMesh.h"
-#include "Fonts/font_awesome.hpp"
-#include "Fonts/lato.hpp"
-#include "Fonts/IconsFontAwesome5.h"
+#include "font_awesome.hpp"
+#include "lato.hpp"
+#include "IconsFontAwesome5.h"
 #include "GuiUtilities.h"
 #include "ImGuiFileDialog.h"
 #include "InputManager.h"
@@ -32,7 +32,6 @@ PAG::GUI::~GUI()
 
 void PAG::GUI::editTransform(ImGuizmo::OPERATION& operation, ImGuizmo::MODE& mode)
 {
-	ImGui::NewLine();
 	if (ImGui::RadioButton("Translate", operation == ImGuizmo::TRANSLATE))
 	{
 		operation = ImGuizmo::TRANSLATE;
@@ -50,7 +49,6 @@ void PAG::GUI::editTransform(ImGuizmo::OPERATION& operation, ImGuizmo::MODE& mod
 		operation = ImGuizmo::SCALE;
 	}
 
-	ImGui::NewLine();
 	if (operation != ImGuizmo::SCALE)
 	{
 		if (ImGui::RadioButton("Local", mode == ImGuizmo::LOCAL))
@@ -88,7 +86,6 @@ void PAG::GUI::loadFonts()
 void PAG::GUI::loadImGUIStyle()
 {
 	ImGui::StyleColorsDark();
-
 	this->loadFonts();
 }
 
@@ -305,7 +302,7 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 			_fileDialog = FileDialog::OPEN_MESH;
 		}
 
-		GuiUtilities::leaveSpace(3);
+		GuiUtilities::leaveSpace(2);
 		ImGui::BeginChild("Components", ImVec2(200, 0), true);
 
 		unsigned globalIdx = 0;
@@ -332,26 +329,32 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 		{
 			ImGui::Text("Visibility");
 			ImGui::Separator();
-			GuiUtilities::leaveSpace(2);
 
 			ImGui::Checkbox("Enabled", &_modelCompSelected->_enabled);
 
 			GuiUtilities::leaveSpace(4);
 			ImGui::Text("Material");
 			ImGui::Separator();
-			GuiUtilities::leaveSpace(2);
 
 			ImGui::Checkbox("Use Uniform Color", &_modelCompSelected->_material._useUniformColor);
-			ImGui::ColorEdit3("Kd Color", &_modelCompSelected->_material._kdColor[0]);
+			ImGui::ColorEdit4("Kd Color", &_modelCompSelected->_material._kdColor[0]);
 			ImGui::ColorEdit3("Ks Color", &_modelCompSelected->_material._ksColor[0]);
 			ImGui::SliderFloat("Metallic", &_modelCompSelected->_material._metallic, .0f, 1.0f);
 			ImGui::SliderFloat("Roughness exponent", &_modelCompSelected->_material._roughnessK, .0f, 1.0f);
+			ImGui::ColorEdit3("Line Color", &_modelCompSelected->_material._lineColor[0]);
+			ImGui::ColorEdit3("Point Color", &_modelCompSelected->_material._pointColor[0]);
 
-			GuiUtilities::leaveSpace(3);
+			GuiUtilities::leaveSpace(2);
+			ImGui::Text("Topology");
+			ImGui::Separator();
+
+			ImGui::SliderFloat("Line Width", &_modelCompSelected->_lineWidth, .0f, 10.0f);
+			ImGui::SliderFloat("Point Size", &_modelCompSelected->_pointSize, .0f, 10.0f);
+
+			GuiUtilities::leaveSpace(2);
 
 			ImGui::Text("Matrices");
 			ImGui::Separator();
-			GuiUtilities::leaveSpace(2);
 
 			this->editTransform(_currentGizmoOperation, _currentGizmoMode);
 		}
@@ -379,14 +382,6 @@ void PAG::GUI::showRenderingMenu(SceneContent* sceneContent)
 
 				ImGui::Text(ICON_FA_CHAIR "Topology");
 				ImGui::Separator();
-				GuiUtilities::leaveSpace(2);
-
-				ImGui::SliderFloat("Line Width", &_appState->_lineWidth, .0f, 10.0f);
-				ImGui::SliderFloat("Point Size", &_appState->_pointSize, .0f, 10.0f);
-				ImGui::ColorEdit3("Line Color", &_appState->_lineColor[0]);
-				ImGui::ColorEdit3("Point Color", &_appState->_pointColor[0]);
-
-				GuiUtilities::leaveSpace(2);
 				
 				static const char* topologyTitle[] = { "Point Cloud", "Wireframe", "Triangle Mesh"};
 				for (int topologyIdx = 0; topologyIdx < VAO::NUM_IBOS; ++topologyIdx)

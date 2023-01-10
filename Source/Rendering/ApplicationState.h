@@ -25,8 +25,6 @@ namespace PAG
 
 		// Topology
 		bool							_activeRendering[VAO::NUM_IBOS];
-		float							_pointSize, _lineWidth;
-		vec3							_pointColor, _lineColor;
 
 		ApplicationState()
 		{
@@ -45,11 +43,6 @@ namespace PAG
 			_Ia = vec3(.6f);
 			_Id = vec3(1.0f);
 			_Is = vec3(1.0f);
-
-			_pointSize = 3.0f;
-			_lineWidth = 1.0f;
-			_pointColor = vec3(.0f);
-			_lineColor = vec3(.0f);
 		}
 	};
 }

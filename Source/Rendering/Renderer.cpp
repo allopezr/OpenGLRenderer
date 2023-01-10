@@ -16,8 +16,6 @@ PAG::Renderer::Renderer(): _appState(nullptr), _content(nullptr), _screenshoter(
 void PAG::Renderer::renderLine(Model3D::MatrixRenderInformation* matrixInformation)
 {
     _lineShader->use();
-    _lineShader->setUniform("lineColor", _appState->_lineColor);
-    glLineWidth(_appState->_lineWidth);
 
     for (auto& model : _content->_model)
     {
@@ -28,8 +26,6 @@ void PAG::Renderer::renderLine(Model3D::MatrixRenderInformation* matrixInformati
 void PAG::Renderer::renderPoint(Model3D::MatrixRenderInformation* matrixInformation)
 {
     _pointShader->use();
-    _pointShader->setUniform("pointColor", _appState->_pointColor);
-    _pointShader->setUniform("pointSize", _appState->_pointSize);
 
     for (auto& model : _content->_model)
     {
@@ -94,6 +90,7 @@ void PAG::Renderer::prepareOpenGL(uint16_t width, uint16_t height, ApplicationSt
     glDepthFunc(GL_LESS);
 
     glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glEnable(GL_MULTISAMPLE);
 
@@ -176,7 +173,6 @@ void PAG::Renderer::render(float alpha, bool renderGui, bool bindScreenshoter)
         this->renderTriangle(&matrixInformation);
     }
 
-    //glPolygonOffset(.1f);
     if (_appState->_activeRendering[VAO::IBO_LINE])
     {
         this->renderLine(&matrixInformation);

@@ -25,7 +25,7 @@ uniform vec3 Is;
 // ------------------------------------
 uniform sampler2D texKdSampler;
 
-uniform vec3 Kd;
+uniform vec4 Kd;
 uniform vec3 Ks;
 uniform float metallic;
 uniform float roughnessK;
@@ -120,7 +120,7 @@ vec3 pointLight(vec3 fragKad, vec3 fragKs, vec3 fragNormal, float metallic, floa
 subroutine(kadTextureType)
 vec4 getUniformColor()
 {
-	return vec4(Kd, 1.0f);
+	return Kd;
 }
 
 subroutine(kadTextureType)
@@ -133,8 +133,6 @@ vec4 getTextureColor()
 void main ()
 {
 	const vec4 fragKad = kadUniform();
-	if (fragKad.w - CUTOFF < .0f) discard;
-
 	const vec3 reflectionColor = pointLight(fragKad.rgb, Ks, normal, metallic, roughnessK);
 	fragmentColor = vec4(reflectionColor, fragKad.w);
 }

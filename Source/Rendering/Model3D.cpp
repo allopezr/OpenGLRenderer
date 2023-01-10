@@ -57,9 +57,15 @@ void PAG::Model3D::draw(RenderingShader* shader, MatrixRenderInformation* matrix
                 break;
             case GL_LINES:
                 rendering = VAO::IBO_LINE;
+                shader->setUniform("lineColor", component->_material._lineColor);
+                glLineWidth(component->_lineWidth);
+
                 break;
             case GL_POINTS:
                 rendering = VAO::IBO_POINT;
+                shader->setUniform("pointColor", component->_material._pointColor);
+                shader->setUniform("pointSize", component->_pointSize);
+
                 break;
             }
             
@@ -86,7 +92,23 @@ void PAG::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
     _modelMatrix = glm::scale(glm::mat4(1.0f), scale) * glm::translate(glm::mat4(1.0f), translate) * origMatrix;
 }
 
-void PAG::Model3D::setTexture(const vec3& color)
+void PAG::Model3D::setLineColor(const vec3& color)
+{
+    for (auto& component : _components)
+    {
+        component->_material._lineColor = color;
+    }
+}
+
+void PAG::Model3D::setPointColor(const vec3& color)
+{
+    for (auto& component : _components)
+    {
+        component->_material._pointColor = color;
+    }
+}
+
+void PAG::Model3D::setTriangleColor(const vec4& color)
 {
     for (auto& component : _components)
     {

@@ -24,12 +24,15 @@ namespace PAG
 	protected:
 		struct Material
 		{
-			vec3		_kdColor, _ksColor;
+			vec4		_kdColor;
+			vec3		_ksColor;
 			float		_metallic, _roughnessK;
 			Texture*	_kadTexture;
 			bool		_useUniformColor;
+			vec3		_pointColor;
+			vec3		_lineColor;
 
-			Material() : _kdColor(1.0f, .0f, .0f), _ksColor(.5f), _kadTexture(nullptr), _useUniformColor(true), _metallic(.7f), _roughnessK(.3f) {}
+			Material() : _kdColor(1.0f, .0f, .0f, 1.0f), _ksColor(.5f), _kadTexture(nullptr), _useUniformColor(true), _metallic(.7f), _roughnessK(.3f), _pointColor(.0f), _lineColor(.0f) {}
 		};
 
 	public:
@@ -45,7 +48,9 @@ namespace PAG
 
 			Material						_material;
 
-			Component(VAO* vao = nullptr) { _enabled = true; _vao = vao; }
+			float							_lineWidth, _pointSize;
+
+			Component(VAO* vao = nullptr) { _enabled = true; _vao = vao; _pointSize = 3.0f; _lineWidth = 1.0f; }
 			~Component() { delete _vao; _vao = nullptr; }
 
 			void completeTopology();
@@ -91,7 +96,9 @@ namespace PAG
 		mat4 getModelMatrix() { return _modelMatrix; }
 		void moveGeometryToOrigin(const mat4& origMatrix = mat4(1.0f), float maxScale = FLT_MAX);
 		void setModelMatrix(const mat4& modelMatrix) { _modelMatrix = modelMatrix; }
-		void setTexture(const vec3& color);
+		void setLineColor(const vec3& color);
+		void setPointColor(const vec3& color);
+		void setTriangleColor(const vec4& color);
 	};
 }
 

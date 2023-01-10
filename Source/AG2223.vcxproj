@@ -91,7 +91,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Fonts/;Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
@@ -111,7 +111,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Fonts/;Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -131,7 +131,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Fonts/;Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
@@ -151,7 +151,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Fonts/;Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
