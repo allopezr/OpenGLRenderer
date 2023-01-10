@@ -1,58 +1,53 @@
+#pragma once
 
 /* 
- * File:   Circle.h
- * Author: lidia
+ *  File:   Circle.h
+ *  Author: lidia
  *
- * Created on 8 de febrero de 2021, 19:32
+ *  Created on 8 de febrero de 2021, 19:32
  */
-
-#ifndef CIRCLE_H
-#define CIRCLE_H
 
 #include "Point.h"
 #include "PolygonGeo.h"
 
-class Circle {
 
-private:
-    Point _c; // centro
-    double _r;  //radio
+class Circle 
+{
+protected:
+    Point       _center;             
+    double      _radius;
 
 public:
     /**
 	*	@brief Default constructor. Coordinates are initialized with an invalid value.
 	*/
-    Circle (): _c(Point (0,0)), _r(1.0){}
+    Circle (): _center(Point (0,0)), _radius(1.0) { }
+
     /**
-    //	*	@brief Constructor.
+    *	@brief Constructor.
 	*/
-    Circle(Point &c, double r): _c(c), _r(r){}
+    Circle(Point &center, double radius): _center(center), _radius(_radius) { }
+
     /**
 	*	@brief Copy constructor.
 	*/
-    Circle (const Circle& orig): _c(orig._c), _r(orig._r){}  ;
+    Circle (const Circle& orig): _center(orig._center), _radius(orig._radius) { }
     
 	/**
 	*	@brief Destructor.
 	*/
-    
-    
     virtual ~Circle();
 
     /**
-     * 
-     * @param p
-     * @return true if p is inside the circle 
-     */
-    
+    *   @brief Checks if the point is inside the circle.
+    *   @param p
+    *   @return true if p is inside the circle 
+    */  
     bool isInside (Point &p);
     
     /**
-     * 
-     * @return a PolygonGeo with circular shape 
-     */
+    *   @return A polygon with circular shape.
+    */
     PolygonGeo getPointsCircle ();
 };
-
-#endif /* CIRCLE_H */
 

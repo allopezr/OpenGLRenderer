@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   PolygonGeo.h
@@ -5,10 +6,6 @@
  *
  * Created on 19 de enero de 2021, 10:20
  */
-
-#ifndef PolygonGeo_H
-#define PolygonGeo_H
-
 
 #include <vector>
 #include <iostream>
@@ -79,7 +76,7 @@ public:
 	/**
 	*	@brief Returns the number of vertices of the PolygonGeo.
 	*/
-	int getNumVertices() { return _vertices.size(); }
+	size_t getNumVertices() { return _vertices.size(); }
 
 	/**
 	*	@brief Returns the vertex at an index.
@@ -110,9 +107,9 @@ public:
 	Vertex next(int index);
 
 	/**
-	*	@brief Shows some information about the PolygonGeo.
+	*	@brief Overriding cout call.
 	*/
-	void out();
+	friend std::ostream& operator<<(std::ostream& os, const PolygonGeo& polygon);
 
 	/**
 	*	@brief Returns the vertex previous to the one in the position index.
@@ -139,8 +136,4 @@ public:
 	*/
 	void set(Vertex& vertex, int pos);
 };
-
-
-
-#endif /* PolygonGeo_H */
 

@@ -52,12 +52,12 @@
     <Filter Include="Archivos de encabezado\Precompiled">
       <UniqueIdentifier>{1debd829-586c-42f0-8fb3-97c7b8ae7391}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Precompiled">
+      <UniqueIdentifier>{3be1434f-98eb-454c-b528-ec81f70b4566}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Fonts\lato.cpp">
@@ -167,6 +167,60 @@
     </ClCompile>
     <ClCompile Include="DrawMesh.cpp">
       <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawLine.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawPoint.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawPointCloud.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawPolygon.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawRay.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawSegment.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawTriangle.cpp">
+      <Filter>Archivos de origen\RenderAG</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Circle.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Line.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Point.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\PointCloud.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\PolygonGeo.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\RayLine.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\SegmentLine.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Triangle.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Vect2d.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Vertex.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PrecompiledHeaders\stdafx.cpp">
+      <Filter>Archivos de origen\Precompiled</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,17 +338,77 @@
     <ClInclude Include="Singleton.h">
       <Filter>Archivos de encabezado\Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Archivos de encabezado\Precompiled</Filter>
-    </ClInclude>
     <ClInclude Include="RandomUtilities.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="ChronoUtilities.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="DrawLine.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
     <ClInclude Include="DrawMesh.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawPoint.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawPointCloud.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawPolygon.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawRay.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawSegment.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawTriangle.h">
+      <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\BasicGeometry.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Circle.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Line.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Point.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\PointCloud.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\PolygonGeo.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\RayLine.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\SegmentLine.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Triangle.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Vect2d.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Vertex.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PrecompiledHeaders\stdafx.h">
+      <Filter>Archivos de encabezado\Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="PrecompiledHeaders\InclDraw2D.h">
+      <Filter>Archivos de encabezado\Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="PrecompiledHeaders\InclGeom2D.h">
+      <Filter>Archivos de encabezado\Precompiled</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

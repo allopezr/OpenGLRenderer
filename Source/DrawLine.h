@@ -1,36 +1,26 @@
+#pragma once
 
 /* 
- * File:   DrawLine.h
- * Author: lidia
+ *  File:   DrawLine.h
+ *  Author: lidia
  *
- * Created on 20 de enero de 2021, 12:06
+ *  Created on 20 de enero de 2021, 12:06
  */
 
-#ifndef DRAWLINE_H
-#define DRAWLINE_H
+#include "Geometry/Line.h"
+#include "Model3D.h"
 
+namespace PAG
+{
+    class DrawLine : public Model3D 
+    {
+    protected:
+        Line _line;
 
-#include "Scene.h"
-#include "Line.h"
-#include "Draw.h"
-
-class DrawLine: public Draw {
-    
-    Line dt;
-    
     public:
-        
-    DrawLine (Line &t); 
-    
-    DrawLine (const DrawLine &ddt): dt (ddt.dt) , Draw() {}
-    
-    void drawIt ();
-    void drawIt (TypeColor c);
-    
-    virtual ~DrawLine(){};
-};
-
-
-
-#endif /* DRAWLINE_H */
+        DrawLine(Line& t);
+        DrawLine(const DrawLine& drawLine) = delete;
+        virtual ~DrawLine() {};
+    };
+}
 

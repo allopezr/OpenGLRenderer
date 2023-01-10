@@ -1,22 +1,16 @@
+#pragma once
 
 /* 
- * File:   RayLine.h
- * Author: lidia
+ *	File:   RayLine.h
+ *	Author: lidia
  *
- * Created on 19 de enero de 2021, 10:12
+ *	Created on 19 de enero de 2021, 10:12
  */
-
-
-#ifndef RAYLINE_H
-#define RAYLINE_H
-
 
 #include "SegmentLine.h"
 
-
 class RayLine : public SegmentLine
 {
-    
 public:
 	/**
 	*	@brief Constructor of a rayline given its two points.
@@ -36,12 +30,12 @@ public:
 	/**
 	*	@brief Distance from a point defined by 'vector' to this rayline.
 	*/
-	float distPointRayline(Vect2d& vector);
+	float distanceToPoint(Vect2d& vector);
 
 	/**
-	*	@brief Checks if this rayline intersects with a segment in a non-proper way.
+	*	@brief Checks if this rayline intersects with a segment in an incorrect way.
 	*/
-	bool impSegmentIntersection(SegmentLine& segment);
+	bool incorrectSegmentIntersection(SegmentLine& segment);
 
 	/**
 	*	@brief Checks if a rayline intersects with a line.
@@ -72,12 +66,8 @@ public:
 	virtual RayLine& operator=(const RayLine& rayline);
 
 	/**
-	*	@brief Shows some information about the rayline in the debug dialog.
+	*	@brief Overriding cout call.
 	*/
-	virtual void out();
+	friend std::ostream& operator<<(std::ostream& os, const RayLine& ray);
 };
-
-
-
-#endif /* RAYLINE_H */
 

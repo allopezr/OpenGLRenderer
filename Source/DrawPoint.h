@@ -1,30 +1,26 @@
+#pragma once
 
 /* 
- * File:   DrawPoint.h
- * Author: lidia
+ *  File:   DrawPoint.h
+ *  Author: lidia
  *
- * Created on 14 de enero de 2021, 15:02
+ *  Created on 14 de enero de 2021, 15:02
  */
 
-#ifndef DRAWPOINT_H
-#define DRAWPOINT_H
+#include "Geometry/Point.h"
+#include "Model3D.h"
 
+namespace PAG
+{
+    class DrawPoint : public Model3D 
+    {
+    protected:
+        Point _point;
 
-#include "Scene.h"
-#include "Point.h"
-#include "Draw.h"
-
-class DrawPoint: public Draw {
-    Point dp;
-public:
-    
-    DrawPoint(Point &p);
-    DrawPoint (const DrawPoint &ddp): dp (ddp.dp) , Draw() {}
-    void drawIt ();
-    void drawIt (TypeColor c);
-    virtual ~DrawPoint(){};
-
-};
-
-#endif /* DRAWPOINT_H */
+    public:
+        DrawPoint(Point& p);
+        DrawPoint(const DrawPoint& drawPoint) = delete;
+        virtual ~DrawPoint() {};
+    };
+}
 

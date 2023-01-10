@@ -1,5 +1,6 @@
 #include <any>
 #include <chrono>
+#include <cmath>
 #include <cstdint>
 #include <cstdlib>
 #include <execution>
@@ -7,6 +8,7 @@
 #include <filesystem>
 #include <fstream>
 #include <functional>
+#include <limits.h>
 #include <memory>
 #include <numeric>
 #include <random>

@@ -1,10 +1,7 @@
-#include <cmath>
-#include <iostream>
-#include <string>
+#include "stdafx.h"
 #include "Point.h"
 
-
-using namespace std;
+// Public methods
 
 Point::Point()
 {
@@ -38,8 +35,7 @@ Point::~Point()
 
 Point::PointClassification Point::classify(Point & p0, Point & p1)
 {
-    //XXXX
-    
+	// XXXXX
 	return PointClassification::BETWEEN;
 }
 
@@ -49,19 +45,17 @@ bool Point::colinear(Point& a, Point& b)
 	return (result != PointClassification::LEFT) && (result != PointClassification::RIGHT);
 }
 
-double Point::distPoint(Point & p)
+double Point::distance(Point & p)
 {
 	return std::sqrt(std::pow(p._x - _x, 2) + std::pow(p._y - _y, 2));
 }
 
 double Point::getAlpha()
 {
-	
-        //XXXX
-	//return angle;
+	// XXXXX
+	// return angle;
 	return 0; 
 }
-
 
 double Point::getModule()
 {
@@ -82,6 +76,13 @@ Point & Point::operator=(const Point & point)
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream& os, const Point& point)
+{
+	os << "Coordinate X: " << point._x << ", coordinate Y: " << point._y;
+
+	return os;
+}
+
 bool Point::rightAbove(Point& a, Point& b)
 {
 	PointClassification result = classify(a, b);
@@ -90,13 +91,6 @@ bool Point::rightAbove(Point& a, Point& b)
 
 double Point::slope(Point & p)
 {
-    //XXXXX
-    
+	// XXXXX
     return 0;
-}
-
-void Point::out()
-{
-    string outstring  =  "Coordinate x: " + std::to_string(_x) + ", coordinate y: " + std::to_string(_y) ;
-    cout << outstring << endl;;
 }

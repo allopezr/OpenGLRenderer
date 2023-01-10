@@ -91,7 +91,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
@@ -111,7 +111,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -131,7 +131,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
@@ -151,7 +151,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>PrecompiledHeaders/;Libraries/imguifiledialog/;Libraries/imgizmo</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -167,7 +167,14 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraGuiAdapter.cpp" />
     <ClCompile Include="CameraProjection.cpp" />
+    <ClCompile Include="DrawLine.cpp" />
     <ClCompile Include="DrawMesh.cpp" />
+    <ClCompile Include="DrawPoint.cpp" />
+    <ClCompile Include="DrawPointCloud.cpp" />
+    <ClCompile Include="DrawPolygon.cpp" />
+    <ClCompile Include="DrawRay.cpp" />
+    <ClCompile Include="DrawSegment.cpp" />
+    <ClCompile Include="DrawTriangle.cpp" />
     <ClCompile Include="FBO.cpp" />
     <ClCompile Include="FBOScreenshot.cpp" />
     <ClCompile Include="Fonts\font_awesome.cpp">
@@ -188,6 +195,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Geometry\Circle.cpp" />
+    <ClCompile Include="Geometry\Line.cpp" />
+    <ClCompile Include="Geometry\Point.cpp" />
+    <ClCompile Include="Geometry\PointCloud.cpp" />
+    <ClCompile Include="Geometry\PolygonGeo.cpp" />
+    <ClCompile Include="Geometry\RayLine.cpp" />
+    <ClCompile Include="Geometry\SegmentLine.cpp" />
+    <ClCompile Include="Geometry\Triangle.cpp" />
+    <ClCompile Include="Geometry\Vect2d.cpp" />
+    <ClCompile Include="Geometry\Vertex.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="GuiUtilities.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -276,6 +293,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Model3D.cpp" />
+    <ClCompile Include="PrecompiledHeaders\stdafx.cpp" />
     <ClCompile Include="Renderer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -296,12 +314,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ShaderProgramDB.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureList.cpp" />
     <ClCompile Include="VAO.cpp" />
@@ -319,12 +331,30 @@
     <ClInclude Include="CameraGuiAdapter.h" />
     <ClInclude Include="CameraProjection.h" />
     <ClInclude Include="ChronoUtilities.h" />
+    <ClInclude Include="DrawLine.h" />
     <ClInclude Include="DrawMesh.h" />
+    <ClInclude Include="DrawPoint.h" />
+    <ClInclude Include="DrawPointCloud.h" />
+    <ClInclude Include="DrawPolygon.h" />
+    <ClInclude Include="DrawRay.h" />
+    <ClInclude Include="DrawSegment.h" />
+    <ClInclude Include="DrawTriangle.h" />
     <ClInclude Include="FBO.h" />
     <ClInclude Include="FBOScreenshot.h" />
     <ClInclude Include="Fonts\font_awesome.hpp" />
     <ClInclude Include="Fonts\IconsFontAwesome5.h" />
     <ClInclude Include="Fonts\lato.hpp" />
+    <ClInclude Include="Geometry\BasicGeometry.h" />
+    <ClInclude Include="Geometry\Circle.h" />
+    <ClInclude Include="Geometry\Line.h" />
+    <ClInclude Include="Geometry\Point.h" />
+    <ClInclude Include="Geometry\PointCloud.h" />
+    <ClInclude Include="Geometry\PolygonGeo.h" />
+    <ClInclude Include="Geometry\RayLine.h" />
+    <ClInclude Include="Geometry\SegmentLine.h" />
+    <ClInclude Include="Geometry\Triangle.h" />
+    <ClInclude Include="Geometry\Vect2d.h" />
+    <ClInclude Include="Geometry\Vertex.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GuiUtilities.h" />
     <ClInclude Include="Image.h" />
@@ -343,6 +373,9 @@
     <ClInclude Include="Libraries\imgui\imgui_internal.h" />
     <ClInclude Include="Libraries\imgui\imstb_truetype.h" />
     <ClInclude Include="Model3D.h" />
+    <ClInclude Include="PrecompiledHeaders\InclDraw2D.h" />
+    <ClInclude Include="PrecompiledHeaders\InclGeom2D.h" />
+    <ClInclude Include="PrecompiledHeaders\stdafx.h" />
     <ClInclude Include="RandomUtilities.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderingShader.h" />
@@ -350,7 +383,6 @@
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderProgramDB.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureList.h" />
     <ClInclude Include="VAO.h" />

@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   DrawRay.h
@@ -6,32 +7,20 @@
  * Created on 19 de enero de 2021, 20:00
  */
 
-#ifndef DRAWRAY_H
-#define DRAWRAY_H
+#include "Geometry/RayLine.h"
+#include "Model3D.h"
 
+namespace PAG
+{
+    class DrawRay : public Model3D 
+    {
+    protected:
+        RayLine _ray;
 
-#include "Scene.h"
-#include "RayLine.h"
-#include "Draw.h"
-
-
-class DrawRay: public Draw {
-    
-    RayLine dt;
-    
     public:
-        
-    DrawRay (RayLine &t); 
-    
-    DrawRay (const DrawRay &ddt): dt (ddt.dt) , Draw() {}
-    
-    void drawIt ();
-    void drawIt (TypeColor c);
-    
-    virtual ~DrawRay(){};
-};
-
-
-
-#endif /* DRAWRAY_H */
+        DrawRay(RayLine& t);
+        DrawRay(const DrawRay& drawRay) = delete;
+        virtual ~DrawRay() {};
+    };
+}
 

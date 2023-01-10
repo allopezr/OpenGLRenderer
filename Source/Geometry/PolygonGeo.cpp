@@ -1,10 +1,7 @@
-
-#include <iostream>
-#include <sstream>
-#include <cstring>
-#include <fstream>
+#include "stdafx.h"
 #include "PolygonGeo.h"
 
+// Public methods
 
 PolygonGeo::PolygonGeo()
 {
@@ -28,7 +25,6 @@ SegmentLine PolygonGeo::getEdge(int i)
 PolygonGeo::PolygonGeo(const std::string & filename)
 {
 	//XXXX
-    
 }
 
 PolygonGeo::~PolygonGeo()
@@ -37,13 +33,13 @@ PolygonGeo::~PolygonGeo()
 
 bool PolygonGeo::add(Vertex & vertex)
 {
-	int index = _vertices.size();
+	size_t index = _vertices.size();
 
 	//if (intersectsWithAnySegment(vertex)) return false;
 
 	_vertices.push_back(vertex);
 	_vertices[index].setPolygon(this);
-	_vertices[index].setPosition(index);
+	_vertices[index].setPosition(static_cast<int>(index));
 
 	return true;
 }
@@ -67,13 +63,16 @@ Vertex PolygonGeo::getVertexAt(int pos)
 	}
 }
 
+bool PolygonGeo::intersects(Line& line, Vect2d& interseccion)
+{
+	return false;
+}
+
 bool PolygonGeo::convex()
 {
 	//XXXX
 	return true;
 }
-
-
 
 Vertex PolygonGeo::next(int index)
 {
@@ -85,11 +84,14 @@ Vertex PolygonGeo::next(int index)
 	return Vertex();
 }
 
-void PolygonGeo::out()
+std::ostream& operator<<(std::ostream& os, const PolygonGeo& polygon)
 {
-	for (int i = 0; i < _vertices.size(); i++) {
-		_vertices[i].out();
+	for (int i = 0; i < polygon._vertices.size(); i++) 
+	{
+		os << polygon._vertices[i] << "\n";
 	}
+
+	return os;
 }
 
 Vertex PolygonGeo::previous(int index)
@@ -131,5 +133,3 @@ void PolygonGeo::set(Vertex& vertex, int pos)
 		vertex.setPosition(pos);
 	}
 }
-
-

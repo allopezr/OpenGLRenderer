@@ -4,6 +4,8 @@
 #include "Camera.h"
 #include "FBOScreenshot.h"
 #include "GUI.h"
+#include "InclDraw2D.h"
+#include "InclGeom2D.h"
 #include "InputManager.h"
 #include "Model3D.h"
 #include "RenderingShader.h"

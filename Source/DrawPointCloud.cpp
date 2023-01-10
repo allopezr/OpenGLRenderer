@@ -1,26 +1,9 @@
-
+#include "stdafx.h"
 #include "DrawPointCloud.h"
 
+// Public methods
 
-DrawPointCloud::DrawPointCloud (PointCloud &t): dt (t), Draw(){
-    
-   //XXXXX
-
-    buildVAO ();
-    
+PAG::DrawPointCloud::DrawPointCloud (PointCloud &pointCloud): Model3D(), _pointCloud(pointCloud)
+{
+    // 
 }
-
-
-void DrawPointCloud::drawIt (TypeColor c){
-    setColorActivo (c);
-    drawIt();
-}
-
-
-void DrawPointCloud::drawIt (){
-    setShaderProgram ( "algeom" );
-    setDrawMode(TypeDraw::POINT );
-    Scene::getInstance ()->addModel ( this );
-    
-}
-

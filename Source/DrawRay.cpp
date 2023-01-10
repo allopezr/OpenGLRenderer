@@ -1,29 +1,9 @@
-
-#include "Point.h"
+#include "stdafx.h"
 #include "DrawRay.h"
 
+// Public methods
 
-
-DrawRay::DrawRay (RayLine &t): dt (t), Draw(){
-    
-    
-       //XXXXX
-    
-
-    buildVAO ();
-    
+PAG::DrawRay::DrawRay (RayLine &ray): Model3D(), _ray(ray)
+{
+    // 
 }
-
-
-void DrawRay::drawIt (TypeColor c){
-    setColorActivo (c);
-    drawIt();
-}
-
-
-void DrawRay::drawIt (){
-    setShaderProgram ( "algeom" );
-    setDrawMode(TypeDraw::LINE );
-    Scene::getInstance ()->addModel ( this );
-}
-

@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   SegmentLIne.h
@@ -6,55 +7,46 @@
  * Created on 17 de enero de 2021, 17:49
  */
 
-#ifndef SEGMENTLINE_H
-#define SEGMENTLINE_H
-
 #include "Point.h"
 #include "Vect2d.h"
 
 class Line;
 class RayLine; 
 
+class SegmentLine 
+{    
+	friend class DrawSegment;        
 
-class SegmentLine {
-    
-friend class DrawSegment;      
-    
-protected:    
-    
-    Point _orig, _dest; 
+protected:      
+    Point	_orig, _dest; 
 
+protected:
     /**
     *	@brief Returns the parametric value T0 to calculate the distance between a point and any geometric object like lines, segments or raylines.
     */
     float getDistanceT0(Vect2d& point);
     
-/**
- *	@brief Obstaints the parameters t and s where both lines intersects, if they do.
+	/**
+	*	@brief Obstaints the parameters t and s where both lines intersects, if they do.
 	*/
     //virtual bool intersects(Vect2d& p1, Vect2d& p2, float& t, float& s);
-        
-    
 
-    
 public:    
-        /**
-    	@brief Default constructor.
+    /**
+	*	@brief Default constructor.
 	*/
 	SegmentLine();
 
 	/**
 	*	@brief Constructor.
 	*/
-	SegmentLine(const Point& a, const Point& b);
-      
+	SegmentLine(const Point& a, const Point& b);   
         
-        /**
+    /**
 	*	@brief Copy constructor.
 	*/
 	SegmentLine(const SegmentLine& segment);
-        
-        
+               
 	/**
 	*	@brief Constructor.
 	*/
@@ -64,7 +56,6 @@ public:
 	*	@brief Destructor.
 	*/
 	virtual ~SegmentLine();
-
   
 	/**
 	*	@brief Returns the origin of the segment.
@@ -79,15 +70,13 @@ public:
 	/**
 	*	@brief Returns the constant of the equation of the implied line: c = y-mx.
 	*/
-	double getEquC();
+	double getEquationC();
         
-        /**
+    /**
 	*	@brief Checks if a segment is different to this one.
 	*/
 	bool distinct(SegmentLine& segment);
-
-        
-        
+      
 	/**
 	*	@brief Distance from a point defined by 'vector' to this segment.
 	*/
@@ -111,9 +100,7 @@ public:
 	/**
 	*	@brief Determines whether a segment is horizontal or not (using EPSILON).
 	*/
-	bool isHorizontal();
-        
-        
+	bool isHorizontal();   
 	
 	/**
 	*	@brief Determines whether or not a segment is vertical (using EPSILON).
@@ -133,7 +120,7 @@ public:
 	/**
 	*	@brief Returns the length of the segment.
 	*/
-	double length() { return _orig.distPoint(_dest); }
+	double length() { return _orig.distance(_dest); }
 
 	/**
 	*	@brief Assignment operator.
@@ -141,9 +128,9 @@ public:
 	virtual SegmentLine& operator=(const SegmentLine& segment);
 
 	/**
-	*	@brief Shows some information of the segment in the debug dialog.
+	*	@brief Overriding cout call.
 	*/
-	virtual void out();
+	friend std::ostream& operator<<(std::ostream& os, const SegmentLine& segment);
 
 	/**
 	*	@brief Determines whether two segments intersect in their own way, that is, when they intersect completely. Use only arithmetic.
@@ -163,13 +150,6 @@ public:
 	/**
 	*	@brief Returns the area formed by the triangle composed of the current SegmentLine and the union of its bounds with p.
 	*/
-	double triangleArea2(Point& p) { return p.triangleArea2(_orig, _dest); }
-
-        
+	double triangleArea2(Point& p) { return p.triangleArea2(_orig, _dest); }      
 };
-
-
-
-
-#endif /* SEGMENTLINE_H */
 

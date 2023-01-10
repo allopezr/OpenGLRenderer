@@ -1,16 +1,13 @@
+#pragma once
 
 /* 
- * File:   Line.h
- * Author: lidia
+ *	File:   Line.h
+ *	Author: lidia
  *
- * Created on 18 de enero de 2021, 19:39
+ *	Created on 18 de enero de 2021, 19:39
  */
 
-#ifndef LINE_H
-#define LINE_H
-
 #include "SegmentLine.h"
-
 
 class Line : public SegmentLine
 {
@@ -33,7 +30,7 @@ public:
 	/**
 	*	@brief Distance from a point defined by 'vector' to this line.
 	*/
-	double distPointLine(Vect2d& v);
+	double distancePointLine(Vect2d& v);
 
 	/**
 	*	@brief Checks if the specified line intersects with this one.
@@ -54,14 +51,14 @@ public:
 	//virtual bool intersects(SegmentLine& segment, Vect2d& intersection);
 
 	/**
-	*	@brief Checks if a segment line generates a non-proper intersection.
+	*	@brief Checks if a segment line generates an incorrect intersection.
 	*/
-	bool impSegmentIntersection(SegmentLine& l);
+	bool incorrectSegmentIntersection(SegmentLine& l);
 
 	/**
 	*	@brief Checks if the parameter t is valid to obtain a point for a line (it's always valid, we just need to override).
 	*/
-	virtual bool isTvalid(double t) { return true; }
+	virtual bool isTValid(double t) { return true; }
 
 	/**
 	*	@brief Assignment operator.
@@ -69,17 +66,13 @@ public:
 	virtual Line& operator=(const Line& line);
 
 	/**
-	*	@brief Shows some information about the line.
+	*	@brief Overriding cout call.
 	*/
-	virtual void out();
+	friend std::ostream& operator<<(std::ostream& os, const Line& line);
 
 	/**
 	*	@brief Checks if a segment intersects with this line (proper intersection).
 	*/
 	bool segmentIntersection(SegmentLine& l);
 };
-
-
-
-#endif /* LINE_H */
 

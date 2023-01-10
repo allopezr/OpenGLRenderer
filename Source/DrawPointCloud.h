@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   DrawPointCloud.h
@@ -6,31 +7,20 @@
  * Created on 20 de enero de 2021, 13:29
  */
 
-#ifndef DRAWPOINTCLOUD_H
-#define DRAWPOINTCLOUD_H
+#include "Geometry/PointCloud.h"
+#include "Model3D.h"
 
-#include "Scene.h"
-#include "PointCloud.h"
-#include "Draw.h"
+namespace PAG
+{
+    class DrawPointCloud : public Model3D 
+    {
+    protected:
+        PointCloud _pointCloud;
 
-
-class DrawPointCloud: public Draw {
-    
-    PointCloud dt;
-    
     public:
-        
-    DrawPointCloud (PointCloud &t); 
-    
-    DrawPointCloud (const DrawPointCloud &ddt): dt (ddt.dt) , Draw() {}
-    
-    void drawIt ();
-    void drawIt (TypeColor c);
-    
-    virtual ~DrawPointCloud(){};
-};
-
-
-
-#endif /* DRAWPOINTCLOUD_H */
+        DrawPointCloud(PointCloud& t);
+        DrawPointCloud(const DrawPointCloud& drawPointCloud) = delete;
+        virtual ~DrawPointCloud() {};
+    };
+}
 

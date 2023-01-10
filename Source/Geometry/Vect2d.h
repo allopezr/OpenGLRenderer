@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   Vect2d.h
@@ -6,22 +7,22 @@
  * Created on 5 de enero de 2021, 14:01
  */
 
-#ifndef VECT2D_H
-#define VECT2D_H
-
 #include "Point.h"
 
-
-class Vect2d : public Point  {
-    //double x, y;
-
-public:    
-    
-    Vect2d () : Point () {};
-    Vect2d (double x, double y): Point (x,y) {}
-    
+class Vect2d : public Point  
+{
+public:      
+    Vect2d () : Point () { }
+    Vect2d (double x, double y): Point (x, y) { } 
    
+	/**
+	*	@return X coordinate.
+	*/
     double getX() {return _x; }
+
+	/**
+	*	@return Y coordinate.
+	*/
     double getY() {return _y; }
     
     /**
@@ -43,7 +44,8 @@ public:
 	*	@brief Returns this + b (sum of vectors).
 	*/
 	Vect2d add(Vect2d& b);
-        //Vect2d operator+ (const Vect2d &b);
+    
+	//Vect2d operator+ (const Vect2d &b);
 
 	/**
 	*	@brief Returns a . b (scalar product).
@@ -65,8 +67,4 @@ public:
 	*/
 	Vect2d sub(Vect2d& b);
 };
-
-
-
-#endif /* VECT2D_H */
 

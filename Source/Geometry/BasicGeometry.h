@@ -1,50 +1,19 @@
-
-
+#include "stdafx.h"
 
 namespace BasicGeometry
 {
-	const double EPSILON = 0.00001;			// Avoids problems with the resolution.
-
-	/**
-	*	@brief Checks if two values are equal.
-	*/
 	bool equal(double a, double b);
-	
-	/**
-	*	@brief Determinant 2x2.
-	*/
 	double determinant2x2(double a, double b, double c, double d);
-
-	/**
-	*	@brief Determinant 3x3.
-	*/
 	double determinant3x3(double a, double b, double c, double d, double e, double f, double g, double h, double i);
-
-	/**
-	*	@brief Returns the mininum value from the 3 specified values.
-	*/
 	double min3(double a, double b, double c);
-
-	/**
-	*	@brief Returns the maximum value from the 3 specified values.
-	*/
 	double max3(double a, double b, double c);
-        
-        /**
-	*	@brief Returns the mininum value from the 2 specified values.
-	*/
 	double min2(double a, double b);
-
-	/**
-	*	@brief Returns the maximum value from the 3 specified values.
-	*/
-	double max2(double a, double b);
-        
+	double max2(double a, double b);   
 };
 
 inline bool BasicGeometry::equal(double a, double b) 
 {
-	return (abs(a - b) < EPSILON);
+	return (abs(a - b) < glm::epsilon<double>());
 }
 
 inline double BasicGeometry::determinant2x2(double a, double b, double c, double d)

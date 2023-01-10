@@ -1,25 +1,23 @@
-#include <iostream>
-#include <string>
+#include "stdafx.h"
 #include "PolygonGeo.h"
+
 #include "Vertex.h"
 
+// Public methods
 
-Vertex::Vertex()
-	: Point()
+Vertex::Vertex() : Point()
 {
 	_position = INVALID_POSITION;
 	_polygon = nullptr;
 }
 
-Vertex::Vertex(const Point& point)
-	: Point(point)
+Vertex::Vertex(const Point& point) : Point(point)
 {
 	_position = INVALID_POSITION;
 	_polygon = nullptr;
 }
 
-Vertex::Vertex(const Point & point, PolygonGeo* polygon, int pos)
-	: Point(point)
+Vertex::Vertex(const Point & point, PolygonGeo* polygon, int pos) : Point(point)
 {
 	_position = pos;
 	_polygon = polygon;
@@ -31,22 +29,24 @@ Vertex::~Vertex()
 
 bool Vertex::convex()
 {
-	//XXXX
-
+	// XXXXX
 	return false;
 }
 
 bool Vertex::concave()
 {
-    //XXXX
+	// XXXXX
 	return 0;
 }
 
-
+Vertex Vertex::next()
+{
+	return Vertex();
+}
 
 SegmentLine Vertex::nextEdge()
 {
-	//XXXX
+	// XXXXX
 	return SegmentLine();
 }
 
@@ -62,18 +62,20 @@ Vertex & Vertex::operator=(const Vertex & vertex)
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream& os, const Vertex& vertex)
+{
+	os << "Position: " << std::to_string(vertex._position);
+
+	return os;
+}
+
+Vertex Vertex::previous()
+{
+	return Vertex();
+}
 
 SegmentLine Vertex::previousEdge()
 {
-	//XXXX
+	// XXXXX
 	return SegmentLine();
 }
-
-
-void Vertex::out()
-{
-	Point::out();
-	std::cout << "Position: " <<  std::to_string(_position);
-}
-
-

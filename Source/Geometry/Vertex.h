@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   Vertex.h
@@ -6,14 +7,10 @@
  * Created on 19 de enero de 2021, 10:22
  */
 
-#ifndef VERTEX_H
-#define VERTEX_H
-
 #include "Point.h"
 #include "SegmentLine.h"
 
-class PolygonGeo;			// Forward declaration due to circular reference betwen both classes.
-
+class PolygonGeo;			// Forward declaration due to circular reference betwen both classes
 
 class Vertex : public Point
 {
@@ -21,8 +18,8 @@ protected:
 	const static int INVALID_POSITION = -1;
 
 protected:
-	PolygonGeo* _polygon;							// Polygon where the vertex belongs to.
-	int _position;										// Position of the vertex in the polygon.
+	PolygonGeo*			_polygon;						//!< Polygon where the vertex belongs to
+	int					_position;						//!< Position of the vertex in the polygon
 
 public:
 	/**
@@ -86,9 +83,9 @@ public:
 	virtual Vertex& operator=(const Vertex& vertex);
 
 	/**
-	*	@brief Shows some information about the vertex in the debug dialog.
+	*	@brief Overriding cout call.
 	*/
-	void out();
+	friend std::ostream& operator<<(std::ostream& os, const Vertex& vertex);
 
 	/**
 	*	@brief Next vertex in clockwise order.
@@ -115,9 +112,4 @@ public:
 	*/
 	void setPosition(int pos) { _position = pos; }
 };
-
-
-
-
-#endif /* VERTEX_H */
 

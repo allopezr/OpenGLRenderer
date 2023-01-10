@@ -1,36 +1,21 @@
-
-
+#include "stdafx.h"
 #include "DrawPolygon.h"
-#include "PolygonGeo.h"
 
+// Public methods
 
-DrawPolygon::DrawPolygon (PolygonGeo &t): dt (t), Draw(){
-    
-    for (int i=0; i<dt.getNumVertices(); i++){
-        
-        Point aux = dt.getVertexAt(i).getPoint();
-    
-        _vertices.push_back(glm::vec3 (aux.getX(), aux.getY(), 0));
-     
-        _normals.push_back ( glm::vec3 ( 0, 0, 1 ) );
-     
-        _indices.push_back ( i );
+PAG::DrawPolygon::DrawPolygon (PolygonGeo &polygon): Model3D(), _polygon(polygon) 
+{   
+    size_t numVertices = _polygon.getNumVertices();
+    Component* component = new Component;
+
+    for (unsigned vertexIdx = 0; vertexIdx < _polygon.getNumVertices(); vertexIdx++) {
+
+        Point point = _polygon.getVertexAt(vertexIdx).getPoint();
+
+        component->_vertices.push_back(VAO::Vertex{ vec3(point.getX(), point.getY(), .0f) });
+        component->_indices[VAO::IBO_LINE].insert(component->_indices[VAO::IBO_LINE].end(), { vertexIdx, (vertexIdx + 1) % numVertices, RESTART_PRIMITIVE_INDEX });
     }
 
-    buildVAO ();
-    
-}
-
-
-void DrawPolygon::drawIt (TypeColor c){
-    setColorActivo (c);
-    drawIt();
-}
-
-
-void DrawPolygon::drawIt (){
-    setShaderProgram ( "algeom" );
-    setDrawMode(TypeDraw::PolygonGeo );
-    Scene::getInstance ()->addModel ( this );
-    
+    this->_components.push_back(std::unique_ptr<Component>(component));
+    this->buildVao(component);
 }

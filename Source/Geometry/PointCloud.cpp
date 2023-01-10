@@ -1,8 +1,4 @@
-
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iostream>
+#include "stdafx.h"
 #include "PointCloud.h"
 
 
@@ -17,7 +13,7 @@ PointCloud::PointCloud(int size, float max_x, float max_y)
 
 PointCloud::PointCloud(const std::string& filename)
 {
-		//XXXX
+	//XXXX
 }
 
 PointCloud::~PointCloud()
@@ -43,7 +39,9 @@ void PointCloud::deletePoint(int index)
 	}
 }
 
-
+void PointCloud::getEdges(Point& minPoint_x, Point& minPoint_y, Point& maxPoint_x, Point& maxPoint_y)
+{
+}
 
 Point PointCloud::getPoint(int position)
 {
@@ -67,5 +65,5 @@ PointCloud & PointCloud::operator=(const PointCloud& pointCloud)
 
 void PointCloud::save(const std::string& filename)
 {
-		//XXXX
+	//XXXX
 }

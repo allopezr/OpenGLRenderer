@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   DrawTriangle.h
@@ -6,30 +7,20 @@
  * Created on 5 de enero de 2021, 14:11
  */
 
-#ifndef DRAWTRIANGLE_H
-#define DRAWTRIANGLE_H
-
-//#include "Scene.h"
-#include "Triangle.h"
-#include "Draw.h"
+#include "Geometry/Triangle.h"
+#include "Model3D.h"
 
 
-class DrawTriangle: public Draw {
-    
-    Triangle dt;
-    
+namespace PAG
+{
+    class DrawTriangle : public Model3D
+    {
+    protected:
+        Triangle _triangle;
+
     public:
-        
-    DrawTriangle (Triangle &t); 
-    
-    DrawTriangle (const DrawTriangle &ddt): dt (ddt.dt) , Draw() {}
-    
-    void drawIt ();
-    void drawIt (TypeColor c);
-    
-    virtual ~DrawTriangle(){};
-};
-
-
-#endif /* DRAWTRIANGLE_H */
-
+        DrawTriangle(Triangle& t);
+        DrawTriangle(const DrawTriangle& drawTriangle) = delete;
+        virtual ~DrawTriangle() {};
+    };
+}

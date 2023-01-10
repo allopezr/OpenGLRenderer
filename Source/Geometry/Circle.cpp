@@ -1,26 +1,22 @@
-
-/* 
- * File:   Circle.cpp
- * Author: lidia
- * 
- * Created on 8 de febrero de 2021, 19:32
- */
-
+#include "stdafx.h"
 #include "Circle.h"
 
+// Public methods
 
+Circle::~Circle()
+{
+}
 
-    bool Circle::isInside (Point &p){
-        
-        //XXXX
-        return true;
-    }
+bool Circle::isInside(Point &p)
+{ 
+    //XXXX
+    return true;
+}
 
-    
-    PolygonGeo Circle:: getPointsCircle (){
-        
-        return PolygonGeo();
-    }
+PolygonGeo Circle:: getPointsCircle()
+{        
+    return PolygonGeo();
+}
     
   
    

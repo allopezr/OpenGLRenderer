@@ -1,36 +1,14 @@
-
-/* 
- * File:   DrawPoint.cpp
- * Author: lidia
- * 
- * Created on 14 de enero de 2021, 15:02
- */
-
+#include "stdafx.h"
 #include "DrawPoint.h"
 
+// Public methods
 
+PAG::DrawPoint::DrawPoint (Point &point): Model3D(), _point(point)
+{
+    Component* component = new Component;
+    component->_vertices.insert(component->_vertices.end(), {VAO::Vertex { vec3(_point.getX(), _point.getY(), .0f) } });
+    component->_indices[VAO::IBO_LINE].insert(component->_indices[VAO::IBO_LINE].end(), { 0, 1 });
+    this->_components.push_back(std::unique_ptr<Component>(component));
 
-DrawPoint::DrawPoint (Point &p): dp (p), Draw(){
-    
-
-    _vertices.push_back (glm::vec3(p.getX(), p.getY(), 0.0));
-    _normals.push_back ( glm::vec3 ( 0, 0, 1 ) );
-    _indices.push_back(0);
-    
-    buildVAO ();
-    
-}
-
-void DrawPoint::drawIt (TypeColor c){
-    setColorActivo (c);
-    drawIt();
-}
-
-
-
-void DrawPoint::drawIt (){
-    setShaderProgram ( "algeom" );
-    setDrawMode(TypeDraw::POINT );
-    Scene::getInstance ()->addModel ( this );
-    
+    this->buildVao(component);
 }

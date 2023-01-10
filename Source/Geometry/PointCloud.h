@@ -1,3 +1,4 @@
+#pragma once
 
 /* 
  * File:   PointCloud.h
@@ -6,10 +7,6 @@
  * Created on 19 de enero de 2021, 12:46
  */
 
-#ifndef POINTCLOUD_H
-#define POINTCLOUD_H
-
-#include <vector>
 #include "Point.h"
 
 
@@ -82,10 +79,6 @@ public:
 	/**
 	*	@brief Returns the size of the point cloud.
 	*/
-	int size() { return _points.size(); }
+	size_t size() { return _points.size(); }
 };
-
-
-
-#endif /* POINTCLOUD_H */
 

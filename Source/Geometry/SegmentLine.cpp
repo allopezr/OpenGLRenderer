@@ -1,33 +1,30 @@
-#include <cmath>
-#include <iostream>
+#include "stdafx.h"
 #include "SegmentLine.h"
+
 #include "Line.h"
 #include "RayLine.h"
 
+// Public methods
 
 SegmentLine::SegmentLine()
 {
 }
 
-SegmentLine::SegmentLine(const Point& a, const Point& b)
-	: _orig(a), _dest(b)
+SegmentLine::SegmentLine(const Point& a, const Point& b) : _orig(a), _dest(b)
 {
 }
 
-SegmentLine::SegmentLine(const SegmentLine& segment)
-	: _orig(segment._orig), _dest(segment._dest)
+SegmentLine::SegmentLine(const SegmentLine& segment) : _orig(segment._orig), _dest(segment._dest)
 {
 }
 
-SegmentLine::SegmentLine(double ax, double ay, double bx, double by)
-	: _orig(ax, ay), _dest(bx, by)
+SegmentLine::SegmentLine(double ax, double ay, double bx, double by) : _orig(ax, ay), _dest(bx, by)
 {
 }
 
 SegmentLine::~SegmentLine()
 {
 }
-
 
 SegmentLine & SegmentLine::operator=(const SegmentLine & segment)
 {
@@ -40,14 +37,25 @@ SegmentLine & SegmentLine::operator=(const SegmentLine & segment)
 	return *this;
 }
 
+bool SegmentLine::segmentIntersection(SegmentLine& l)
+{
+	return false;
+}
 
+double SegmentLine::getEquationC()
+{
+	return 0.0;
+}
 
 bool SegmentLine::distinct(SegmentLine & segment)
 {
 	return !equal(segment);
 }
 
-
+float SegmentLine::distPointSegment(Vect2d& vector)
+{
+	return 0.0f;
+}
 
 bool SegmentLine::equal(SegmentLine & segment)
 {
@@ -56,15 +64,13 @@ bool SegmentLine::equal(SegmentLine & segment)
 
 Point SegmentLine::getPoint(double t)
 {
-
     //XXXX
 	return Point();
 }
 
-
 bool SegmentLine::impSegmentIntersection(SegmentLine& segment)
 {
-//XXXX
+	//XXXX
     return true;
 }
 
@@ -73,37 +79,30 @@ bool SegmentLine::isHorizontal()
 	return true;
 }
 
-
-
-
 bool SegmentLine::isVertical()
 {
     //XXXX
 	return true; 
 }
 
-
 double SegmentLine::slope()
 {
-	//XXXX
-    
+	//XXXX   
     return 0;
 }
 
+// Protected methods
 
-
-
- // PROTECTED METHODS
-
-
-
-void SegmentLine::out()
+std::ostream& operator<<(std::ostream& os, const SegmentLine& segment)
 {
-	std::cout << "Point A: )";
-	_orig.out();
-	std::cout << "Point B: ";
-	_dest.out();
+	os << "Point A: " << segment._orig << ", Point B: " << segment._dest << "\n";
+
+	return os;
 }
 
+// Protected methods
 
-
+float SegmentLine::getDistanceT0(Vect2d& point)
+{
+	return 0.0f;
+}

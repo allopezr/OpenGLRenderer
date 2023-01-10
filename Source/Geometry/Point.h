@@ -1,7 +1,5 @@
 #pragma once
 
-#include <limits.h>
-#include <cmath>
 #include "BasicGeometry.h"
 
 /**
@@ -14,7 +12,8 @@ protected:
 	const static int DEFAULT_VALUE = INT_MAX;					// Value of X and Y coordinates for an incomplete Point.
 
 public:
-	enum PointClassification {
+	enum PointClassification 
+	{
 		LEFT, RIGHT, FORWARD, BACKWARD, BETWEEN, ORIGIN, DEST
 	};
 
@@ -28,7 +27,7 @@ public:
 	Point();
 
 	/**
-	*	@brief Constructor. Depending on the value of polar, x may be an angle (radians) and y the vector module.
+	*	@brief Constructor. If polar, x is an angle (radians) and y the vector module.
 	*/
 	Point(double x, double y, bool polar = false);
 
@@ -45,32 +44,32 @@ public:
 	/**
 	*	@brief Checks the position of the point respect to other two points (a, b).
 	*/
-	bool backward(Point& a, Point& b) { return classify(a, b) == PointClassification::BACKWARD; }
+	bool backward(Point& a, Point& b) { return this->classify(a, b) == PointClassification::BACKWARD; }
 
 	/**
-	*	@brief Determines the relative position of a point (this) with respect to other two given as _a parameter (which can form a segment).
+	*	@brief Determines the relative position with respect to other two (which can form a segment).
 	*/
 	PointClassification classify(Point& p0, Point& p1);
 
 	/**
-	*	@brief Checks if this point lies on the same line where a and b belong.
+	*	@brief Checks if this point lies on the same line described by a and b.
 	*/
 	bool colinear(Point& a, Point& b);
 
 	/**
 	*	@brief Distance between this point and another one.
 	*/
-	double distPoint(Point& p);
+	double distance(Point& p);
 
 	/**
 	*	@brief Checks if the coordinates of this point are different from the coordinates of a point p.
 	*/
-	bool distinct(Point& p) { return (abs(_x - p._x) > BasicGeometry::EPSILON || std::abs(_y - p._y) > BasicGeometry::EPSILON); }
+	bool distinct(Point& p) { return BasicGeometry::equal(_x, p._x) or BasicGeometry::equal(_y, p._y); }
 
 	/**
 	*	@brief Checks if the coordinates of this point are equal from the coordinates of a point p.
 	*/
-	bool equal(Point& pt) { return (BasicGeometry::equal(_x, pt._x) && BasicGeometry::equal(_y, pt._y)); }
+	bool equal(Point& p) { return BasicGeometry::equal(_x, p._x) and BasicGeometry::equal(_y, p._y); }
 
 	 /**
 	 *	@brief Checks the position of the point respect to other two points (a, b).
@@ -78,12 +77,12 @@ public:
 	bool forward(Point& a, Point& b) { return classify(a, b) == PointClassification::FORWARD; }
 
 	/**
-	*	@brief Returns the coordinate X of the point.
+	*	@return X coordinate.
 	*/
 	double getX() { return _x; }
 
 	/**
-	*	@brief Returns the coordinate Y of the point.
+	*	@return Y coordinate.
 	*/
 	double getY() { return _y; }
 
@@ -123,9 +122,9 @@ public:
 	virtual Point& operator=(const Point& point);
 
 	/**
-	*	@brief Shows in the debug dialog some information about the point.
+	*	@brief Overriding cout call.
 	*/
-	void out();
+	friend std::ostream& operator<<(std::ostream& os, const Point& point);
 
 	/**
 	*	@brief Checks the position of the point respect to other two points (a, b).
@@ -160,6 +159,6 @@ public:
 	/**
 	*	@brief Calculates the double area of the triangle formed by (this, a, b).
 	*/
-	double triangleArea2(Point& a, Point& b) { return 0;  }
+	double triangleArea2(Point& a, Point& b) { return 0; }
 };
 
