@@ -44,7 +44,7 @@ x86/*
 # Models
 *.bin
 *.mtl
-*.png
+Source/*.png
 *.jpeg
 *.jpg
 *.txt
@@ -55,3 +55,6 @@ x86/*
 *.md5anim
 *.md5mesh
 *.psd
+
+# UI
+*.ini

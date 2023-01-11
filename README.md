@@ -22,12 +22,22 @@ Proyecto template para la asignatura de Algoritmos Geométricos en la Universida
     | Rotación de modelo | <kbd>R</kbd> |
     | Escalado de modelo | <kbd>S</kbd> |
 
+<p align="center">
+    <img src="readme_assets/guizmo.png" width=800 /></br>
+    <em>Transformación de modelo mediante la interfaz. En este caso se muestra una rotación.</em>
+</p>
+
 3. Visualización de diferentes topologías, habiéndose generado estas durante la carga de los modelos y encontrándose en el vector de modelos de la escena (`SceneContent`, aunque debe gestionarse desde el `Renderer`).
     | Operación | Interacción |
     | ----------- | ----------- |
     | Activar/Desactivar nube de puntos | <kbd>0</kbd> |
     | Activar/Desactivar malla de alambre | <kbd>1</kbd> |
     | Activar/Desactivar malla de triángulos | <kbd>2</kbd> |
+
+<p align="center">
+    <img src="readme_assets/topology.png" width=300 /></br>
+    <em>Nube de puntos, malla de alambre y malla de triángulos visualizadas sobre el mismo modelo.</em>
+</p>
 
 4. Captura de pantalla con antialiasing (para la documentación `:D`).
 
