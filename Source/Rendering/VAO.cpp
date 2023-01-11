@@ -80,10 +80,4 @@ void PAG::VAO::defineInterleavedVBO(GLuint vboId)
 
 	glEnableVertexAttribArray(VBO_TEXT_COORD);
 	glVertexAttribPointer(VBO_TEXT_COORD, static_cast<GLsizei>(sizeof(vec2) / sizeof(GL_FLOAT)), GL_FLOAT, GL_FALSE, structSize, (GLubyte*)offsetof(Vertex, _textCoord));
-
-	glEnableVertexAttribArray(VBO_TANGENT);
-	glVertexAttribPointer(VBO_TANGENT, static_cast<GLsizei>(sizeof(vec3) / sizeof(GL_FLOAT)), GL_FLOAT, GL_FALSE, structSize, (GLubyte*)offsetof(Vertex, _tangent));
-
-	glEnableVertexAttribArray(VBO_BITANGENT);
-	glVertexAttribPointer(VBO_BITANGENT, static_cast<GLsizei>(sizeof(vec3) / sizeof(GL_FLOAT)), GL_FLOAT, GL_FALSE, structSize, (GLubyte*)offsetof(Vertex, _bitangent));
 }

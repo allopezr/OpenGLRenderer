@@ -27,7 +27,6 @@ namespace PAG
 		{
 			vec3		_position, _normal;
 			vec2		_textCoord;
-			vec3		_tangent, _bitangent;
 		};
 
 	private:
