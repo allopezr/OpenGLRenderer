@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "AABB.h"
 
-AABB::AABB(const vec3& min, const vec3& max): _max(max), _min(min)
+// Public methods
+
+AABB::AABB(const vec3& min, const vec3& max) : _max(max), _min(min)
 {
 }
 
-AABB::AABB(const AABB& aabb): _max(aabb._max), _min(aabb._min)
+AABB::AABB(const AABB& aabb) : _max(aabb._max), _min(aabb._min)
 {
 }
 
