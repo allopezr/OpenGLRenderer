@@ -19,6 +19,7 @@ uniform vec3 lightPosition;
 uniform vec3 Ia;
 uniform vec3 Id;
 uniform vec3 Is;
+uniform float gamma;
 
 // ------------------------------------
 // ---------- MATERIALS ---------------
@@ -134,5 +135,5 @@ void main ()
 {
 	const vec4 fragKad = kadUniform();
 	const vec3 reflectionColor = pointLight(fragKad.rgb, Ks, normal, metallic, roughnessK);
-	fragmentColor = vec4(reflectionColor, fragKad.w);
+	fragmentColor = vec4(pow(reflectionColor, vec3(1.0 / gamma)), fragKad.w);
 }

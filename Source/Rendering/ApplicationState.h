@@ -21,7 +21,8 @@ namespace PAG
 		float							_screenshotFactor;										
 
 		// Ligthing
-		vec3							_lightPosition, _Ia, _Id, _Is;					
+		vec3							_lightPosition, _Ia, _Id, _Is;	
+		float							_gamma;
 
 		// Topology
 		bool							_activeRendering[VAO::NUM_IBOS];
@@ -43,6 +44,7 @@ namespace PAG
 			_Ia = vec3(.6f);
 			_Id = vec3(1.0f);
 			_Is = vec3(1.0f);
+			_gamma = 1.3f;
 		}
 	};
 }

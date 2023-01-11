@@ -37,6 +37,7 @@ void PAG::Renderer::renderTriangle(Model3D::MatrixRenderInformation* matrixInfor
 {
     _triangleShader->use();
     this->transferLightUniforms(_triangleShader);
+    _triangleShader->setUniform("gamma", _appState->_gamma);
 
     for (auto& model : _content->_model)
     {

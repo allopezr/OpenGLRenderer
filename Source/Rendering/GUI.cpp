@@ -371,6 +371,7 @@ void PAG::GUI::showRenderingMenu(SceneContent* sceneContent)
 	if (ImGui::Begin("Rendering Settings", &_showMenuButtons[RENDERING]))
 	{
 		ImGui::ColorEdit3("Background color", &_appState->_backgroundColor[0]);
+		ImGui::SliderFloat("Gamma", &_appState->_gamma, 1.0f, 5.0f);
 
 		GuiUtilities::leaveSpace(3);
 
@@ -380,7 +381,7 @@ void PAG::GUI::showRenderingMenu(SceneContent* sceneContent)
 			{
 				GuiUtilities::leaveSpace(1);
 
-				ImGui::Text(ICON_FA_CHAIR "Topology");
+				ImGui::Text(ICON_FA_NETWORK_WIRED "Topology");
 				ImGui::Separator();
 				
 				static const char* topologyTitle[] = { "Point Cloud", "Wireframe", "Triangle Mesh"};
