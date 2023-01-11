@@ -35,7 +35,7 @@ Proyecto template para la asignatura de Algoritmos Geométricos en la Universida
     | Activar/Desactivar malla de triángulos | <kbd>2</kbd> |
 
 <p align="center">
-    <img src="readme_assets/topology.png" width=300 /></br>
+    <img src="readme_assets/topology.png" width=500 /></br>
     <em>Nube de puntos, malla de alambre y malla de triángulos visualizadas sobre el mismo modelo.</em>
 </p>
 
@@ -60,7 +60,7 @@ Desde la interfaz se ofrecen otras tantas funcionalidades:
 
 El nuevo modelo deberá implementarse como una subclase de `Model3D`, la cual nos dará todas las funcionalidades necesarias para cargar la geometría y topología en GPU. Nos desentendemos de esta tarea, y por tanto, nuestra única labor es definir geometría y topología. 
 
-A tener en cuenta, los atributos de un vértice (`VAO::Vertex`) son (por orden): posición (`vec3`), normal (`vec3`) y coordenadas de textura (`vec2`).
+Se debe tener en cuenta que los atributos de un vértice (`VAO::Vertex`) son (por orden): posición (`vec3`), normal (`vec3`) y coordenadas de textura (`vec2`).
 Así, podemos añadir nuevos vértices a nuestro modelo mediante la siguiente sintaxis:
 
     componente->_vertices.insert(component->vertices.end(), { vertices })
