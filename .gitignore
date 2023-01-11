@@ -58,3 +58,6 @@ Source/*.png
 
 # UI
 *.ini
+
+# Python
+attach_license/.idea/*
