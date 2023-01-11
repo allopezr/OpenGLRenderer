@@ -1,9 +1,9 @@
+# Algoritmos Geométricos (2022-2023)
+
 ![c++](https://img.shields.io/github/languages/top/AlfonsoLRz/AG2223) 
 ![opengl](https://img.shields.io/badge/opengl-4.5-red.svg) 
 ![imgui](https://img.shields.io/badge/imgui-1.82-green.svg) 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
-
-# Algoritmos Geométricos (2022-2023)
 
 Proyecto template para la asignatura de Algoritmos Geométricos en la Universidad de Jaén. A continuación se describe la interacción con la aplicación.
 
