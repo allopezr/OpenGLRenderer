@@ -42,6 +42,14 @@ x86/*
 *.tlog
 *.db
 
+# JetBrains
+*.json
+*.xml
+*.filters
+*.cmake
+clion/cmake-build-debug-visual-studio-x64/*
+clion/cmake-build-release-visual-studio-x64/*
+
 # Models
 *.bin
 *.mtl
@@ -61,4 +69,5 @@ Source/*.png
 *.ini
 
 # Python
-attach_license/.idea/*
+license_header/.idea/*
+clion_updater/.idea/*
