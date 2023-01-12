@@ -1,0 +1,45 @@
+﻿  Window.cpp
+  AABB.cpp
+  Circle.cpp
+  Line.cpp
+  Point.cpp
+  PointCloud.cpp
+  PolygonGeo.cpp
+  RayLine.cpp
+  SegmentLine.cpp
+  Triangle.cpp
+  Vect2d.cpp
+  Vertex.cpp
+  stdafx.cpp
+  Camera.cpp
+  CameraGuiAdapter.cpp
+  CameraProjection.cpp
+  DrawLine.cpp
+  DrawMesh.cpp
+  DrawPoint.cpp
+  DrawPointCloud.cpp
+  DrawPolygon.cpp
+  DrawRay.cpp
+  DrawSegment.cpp
+  DrawTriangle.cpp
+  FBO.cpp
+  FBOScreenshot.cpp
+  GUI.cpp
+  GuiUtilities.cpp
+  Image.cpp
+  InputManager.cpp
+  Model3D.cpp
+  Renderer.cpp
+  RenderingShader.cpp
+  SceneContent.cpp
+  ShaderProgram.cpp
+  ShaderProgramDB.cpp
+D:\Github\AG2223\vs\Source\Rendering\ShaderProgram.cpp(96,75): warning C4267: 'argumento': conversión de 'size_t' a 'GLsizei'; posible pérdida de datos
+  Texture.cpp
+  TextureList.cpp
+  VAO.cpp
+D:\Github\AG2223\vs\Source\Rendering\TextureList.cpp(49,36): warning C4101: 'error': variable local sin referencia
+  main.cpp
+     Creando biblioteca D:\Github\AG2223\vs\x64\Release\AG2223.lib y objeto D:\Github\AG2223\vs\x64\Release\AG2223.exp
+  LINK : se especificó /LTCG pero no se requiere generación de código; quite /LTCG de la línea de comandos de vínculo para mejorar el rendimiento del vinculador
+  AG2223.vcxproj -> D:\Github\AG2223\vs\x64\Release\AG2223.exe

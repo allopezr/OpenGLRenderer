@@ -40,6 +40,7 @@ x86/*
 */x86/*
 *.pdb
 *.tlog
+*.db
 
 # Models
 *.bin
