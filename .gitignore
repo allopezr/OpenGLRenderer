@@ -49,6 +49,8 @@ x86/*
 *.cmake
 clion/cmake-build-debug-visual-studio-x64/*
 clion/cmake-build-release-visual-studio-x64/*
+clion/cmake-build-release-mingw/*
+!clion/CMakeLists.txt
 
 # Models
 *.bin
@@ -56,7 +58,6 @@ clion/cmake-build-release-visual-studio-x64/*
 Source/*.png
 *.jpeg
 *.jpg
-*.txt
 *.zip
 *.gltf
 *.tif
