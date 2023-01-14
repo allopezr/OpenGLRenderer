@@ -401,9 +401,6 @@
     <ClInclude Include="Rendering\CameraGuiAdapter.h">
       <Filter>Archivos de encabezado\RenderCore</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\RandomUtilities.h">
-      <Filter>Archivos de encabezado\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="Geometry\ChronoUtilities.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
@@ -411,6 +408,9 @@
       <Filter>Archivos de encabezado\Patterns</Filter>
     </ClInclude>
     <ClInclude Include="Geometry\AABB.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\RandomUtilities.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
   </ItemGroup>

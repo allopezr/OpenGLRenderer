@@ -20,7 +20,7 @@ PointCloud::~PointCloud()
 {
 }
 
-void PointCloud::addPoint(Point& p)
+void PointCloud::addPoint(const Point& p)
 {
 	_points.push_back(p);
 }

@@ -348,6 +348,12 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 			ImGui::Text("Topology");
 			ImGui::Separator();
 
+			static const char* topologyTitle[] = { "Point Cloud", "Wireframe", "Triangle Mesh" };
+			for (int topologyIdx = 0; topologyIdx < VAO::NUM_IBOS; ++topologyIdx)
+			{
+				ImGui::Checkbox(topologyTitle[topologyIdx], &_modelCompSelected->_activeRendering[topologyIdx]);
+				if (topologyIdx < VAO::NUM_IBOS - 1) ImGui::SameLine(0, 10);
+			}
 			ImGui::SliderFloat("Line Width", &_modelCompSelected->_lineWidth, .0f, 10.0f);
 			ImGui::SliderFloat("Point Size", &_modelCompSelected->_pointSize, .0f, 10.0f);
 

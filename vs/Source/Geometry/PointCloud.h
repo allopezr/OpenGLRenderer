@@ -39,7 +39,7 @@ public:
 	/**
 	*	@brief Adds a point to the point cloud.
 	*/
-	void addPoint(Point& p);
+	void addPoint(const Point& p);
 
 	/**
 	*	@brief Returns the points that minimizes the distance to any point from the cloud.

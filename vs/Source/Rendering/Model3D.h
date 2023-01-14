@@ -49,8 +49,12 @@ namespace PAG
 			Material						_material;
 
 			float							_lineWidth, _pointSize;
+			bool							_activeRendering[VAO::NUM_IBOS];
 
-			Component(VAO* vao = nullptr) { _enabled = true; _vao = vao; _pointSize = 3.0f; _lineWidth = 1.0f; }
+			Component(VAO* vao = nullptr) { 
+				_enabled = true; _vao = vao; _pointSize = 3.0f; _lineWidth = 1.0f; 			
+				for (int i = 0; i < VAO::NUM_IBOS; ++i) _activeRendering[i] = true;
+			}
 			~Component() { delete _vao; _vao = nullptr; }
 
 			void completeTopology();
@@ -95,10 +99,11 @@ namespace PAG
 		AABB getAABB() { return _aabb.dot(_modelMatrix); }
 		mat4 getModelMatrix() { return _modelMatrix; }
 		void moveGeometryToOrigin(const mat4& origMatrix = mat4(1.0f), float maxScale = FLT_MAX);
-		void setModelMatrix(const mat4& modelMatrix) { _modelMatrix = modelMatrix; }
-		void setLineColor(const vec3& color);
-		void setPointColor(const vec3& color);
-		void setTriangleColor(const vec4& color);
+		Model3D* setModelMatrix(const mat4& modelMatrix) { _modelMatrix = modelMatrix; return this; }
+		Model3D* setLineColor(const vec3& color);
+		Model3D* setPointColor(const vec3& color);
+		Model3D* setTriangleColor(const vec4& color);
+		Model3D* setTopologyVisibility(VAO::IBO_slots topology, bool visible);
 	};
 }
 
