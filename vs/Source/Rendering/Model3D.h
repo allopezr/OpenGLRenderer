@@ -79,11 +79,13 @@ namespace PAG
 
 	protected:
 		static std::string							CHECKER_PATTERN_PATH;
+		static std::unordered_set<std::string>		USED_NAMES;
 
 	protected:
 		AABB										_aabb;
 		std::vector<std::unique_ptr<Component>>		_components;
 		mat4										_modelMatrix;
+		std::string									_name;
 
 	protected:
 		void buildVao(Component* component);
@@ -98,7 +100,9 @@ namespace PAG
 		virtual void draw(RenderingShader* shader, MatrixRenderInformation* matrixInformation, ApplicationState* appState, GLuint primitive);
 		AABB getAABB() { return _aabb.dot(_modelMatrix); }
 		mat4 getModelMatrix() { return _modelMatrix; }
+		std::string getName() { return _name; }
 		void moveGeometryToOrigin(const mat4& origMatrix = mat4(1.0f), float maxScale = FLT_MAX);
+		Model3D* overrideModelName();
 		Model3D* setModelMatrix(const mat4& modelMatrix) { _modelMatrix = modelMatrix; return this; }
 		Model3D* setLineColor(const vec3& color);
 		Model3D* setPointColor(const vec3& color);

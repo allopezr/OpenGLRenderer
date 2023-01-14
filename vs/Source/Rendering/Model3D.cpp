@@ -4,11 +4,13 @@
 // Static properties
 
 std::string PAG::Model3D::CHECKER_PATTERN_PATH = "Assets/Textures/Checker.png";
+std::unordered_set<std::string> PAG::Model3D::USED_NAMES;
 
 // Public methods
 
 PAG::Model3D::Model3D(): _modelMatrix(1.0f)
 {
+    this->overrideModelName();
 }
 
 PAG::Model3D::~Model3D()
@@ -92,6 +94,31 @@ void PAG::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
     vec3 scale = (maxScale < FLT_MAX) ? ((maxScale > maxScaleAABB) ? vec3(1.0f) : vec3(maxScale / maxScaleAABB)) : vec3(1.0f);
 
     _modelMatrix = glm::scale(glm::mat4(1.0f), scale) * glm::translate(glm::mat4(1.0f), translate) * origMatrix;
+}
+
+PAG::Model3D* PAG::Model3D::overrideModelName()
+{
+    std::string className = typeid(*this).name();
+    std::string classTarget = "class ";
+    size_t classIndex = className.find(classTarget);
+    if (classIndex != std::string::npos)
+    {
+        className = className.substr(classIndex + classTarget.size(), className.size() - classIndex - classTarget.size());
+    }
+
+    unsigned modelIdx = 0;
+    bool nameValid = false;
+
+    while (!nameValid)
+    {
+        this->_name = className + " " + std::to_string(modelIdx);
+        nameValid = USED_NAMES.find(this->_name) == USED_NAMES.end();
+        ++modelIdx;
+    }
+
+    USED_NAMES.insert(this->_name);
+
+    return this;
 }
 
 PAG::Model3D* PAG::Model3D::setLineColor(const vec3& color)

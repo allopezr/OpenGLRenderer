@@ -39,7 +39,7 @@ void PAG::Renderer::buildFooScene()
             pointCloud->addPoint(Point(rand.x, rand.y));
         }
 
-        _content->addNewModel((new DrawPointCloud(*pointCloud))->setPointColor(RandomUtilities::getUniformRandomColor()));
+        _content->addNewModel((new DrawPointCloud(*pointCloud))->setPointColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
         delete pointCloud;
     }
 
@@ -52,7 +52,7 @@ void PAG::Renderer::buildFooScene()
         Point b(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x), RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y));
         SegmentLine* segment = new SegmentLine(a, b);
 
-        _content->addNewModel((new DrawSegment(*segment))->setLineColor(RandomUtilities::getUniformRandomColor()));
+        _content->addNewModel((new DrawSegment(*segment))->setLineColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
         delete segment;
     }
 
@@ -68,7 +68,8 @@ void PAG::Renderer::buildFooScene()
         Vect2d c(glm::cos(alpha * (triangleIdx + 1)) * rand_c, glm::sin(alpha * (triangleIdx + 1)) * rand_c);
         Triangle* triangle = new Triangle(a, b, c);
 
-        _content->addNewModel((new DrawTriangle(*triangle))->setLineColor(RandomUtilities::getUniformRandomColor())->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f)));
+        _content->addNewModel((new DrawTriangle(*triangle))->setLineColor(RandomUtilities::getUniformRandomColor())->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f))
+            ->overrideModelName());
         delete triangle;
     }
 }

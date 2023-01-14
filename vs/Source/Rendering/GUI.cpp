@@ -311,7 +311,7 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 		{
 			for (int compIdx = 0; compIdx < sceneContent->_model[modelIdx]->_components.size(); ++compIdx)
 			{
-				const std::string compName = "Model " + std::to_string(modelIdx) + ", " + "Comp. " + std::to_string(compIdx);
+				const std::string compName = sceneContent->_model[modelIdx]->getName() + ", " + "Comp. " + std::to_string(compIdx);
 				if (ImGui::Selectable(compName.c_str(), _modelCompSelected == sceneContent->_model[modelIdx]->_components[compIdx].get()))
 				{
 					_modelCompSelected = sceneContent->_model[modelIdx]->_components[compIdx].get();
