@@ -46,11 +46,11 @@ x86/*
 *.json
 *.xml
 *.filters
-*.cmake
 clion/cmake-build-debug-visual-studio-x64/*
 clion/cmake-build-release-visual-studio-x64/*
 clion/cmake-build-release-mingw/*
 !clion/CMakeLists.txt
+!clion_linux/CMakeLists.txt
 
 # Models
 *.bin
