@@ -1,8 +1,5 @@
 #pragma once
 
-#include "boost/variant.hpp"
-
-#define NUM_BONES_PER_VERTEX 4
 #define RESTART_PRIMITIVE_INDEX 0xFFFFFFFF
 
 namespace PAG

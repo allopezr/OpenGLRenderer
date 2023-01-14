@@ -226,12 +226,8 @@ GLuint PAG::ShaderProgram::compileShader(const char* filename, const GLenum shad
 
 bool PAG::ShaderProgram::fileExists(const std::string& fileName)
 {
-	struct stat info;
-	int ret = -1;
-
-	ret = stat(fileName.c_str(), &info);
-
-	return 0 == ret;
+	std::ifstream f(fileName.c_str());
+	return f.good();
 }
 
 PAG::ShaderProgram::ShaderTypes PAG::ShaderProgram::fromOpenGLToShaderTypes(const GLenum shaderType)

@@ -65,6 +65,8 @@ Source/*.png
 *.md5anim
 *.md5mesh
 *.psd
+!vs/Source/Assets/Models/Ajax.obj
+!vs/Source/Assets/Models/TreeGrowing.obj
 
 # UI
 *.ini
