@@ -3,14 +3,75 @@
 
 #include "ChronoUtilities.h"
 #include "DrawMesh.h"
+#include "DrawPointCloud.h"
+#include "DrawSegment.h"
 #include "InputManager.h"
+#include "PointCloud.h"
 #include "ShaderProgramDB.h"
+#include "RandomUtilities.h"
+#include "SegmentLine.h"
 
 // Public methods
 
 PAG::Renderer::Renderer(): _appState(nullptr), _content(nullptr), _screenshoter(nullptr), _triangleShader(nullptr), _lineShader(nullptr), _pointShader(nullptr)
 {
     _gui = GUI::getInstance();
+}
+
+void PAG::Renderer::buildFooScene()
+{
+    vec2 minBoundaries = vec2(-1.5, -.5), maxBoundaries = vec2(-minBoundaries);
+
+    // Spheric randomized point cloud
+    int numPoints = 800, numPointClouds = 6;
+    
+    for (int pcIdx = 0; pcIdx < numPointClouds; ++pcIdx)
+    {
+        PointCloud* pointCloud = new PointCloud;
+        vec3 sphereCenter = vec3(
+            RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
+            RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y),
+            RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x));
+
+        for (int idx = 0; idx < numPoints; ++idx)
+        {
+            vec3 rand = RandomUtilities::getUniformRandomInUnitSphere() / 6.0f + sphereCenter;
+            pointCloud->addPoint(Point(rand.x, rand.y));
+        }
+
+        _content->addNewModel((new DrawPointCloud(*pointCloud))->setPointColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
+        delete pointCloud;
+    }
+
+    // Random segments
+    int numSegments = 8;
+
+    for (int segmentIdx = 0; segmentIdx < numSegments; ++segmentIdx)
+    {
+        Point a(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x), RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y));
+        Point b(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x), RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y));
+        SegmentLine* segment = new SegmentLine(a, b);
+
+        _content->addNewModel((new DrawSegment(*segment))->setLineColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
+        delete segment;
+    }
+
+    // Random triangles
+    int numTriangles = 30;
+    float alpha = 2 * glm::pi<float>() / static_cast<float>(numTriangles);
+
+    for (int triangleIdx = 0; triangleIdx < numTriangles; ++triangleIdx)
+    {
+        float rand_b = RandomUtilities::getUniformRandom(.5f, .9f), rand_c = RandomUtilities::getUniformRandom(.6f, .8f);
+        Vect2d a(.0f, .0f);
+        Vect2d b(glm::cos(alpha * triangleIdx) * rand_b, glm::sin(alpha * triangleIdx) * rand_b);
+        Vect2d c(glm::cos(alpha * (triangleIdx + 1)) * rand_c, glm::sin(alpha * (triangleIdx + 1)) * rand_c);
+        Triangle* triangle = new Triangle(a, b, c);
+
+        _content->addNewModel((new DrawTriangle(*triangle))->setLineColor(RandomUtilities::getUniformRandomColor())->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f))
+            ->overrideModelName());
+        delete triangle;
+    }
 }
 
 void PAG::Renderer::renderLine(Model3D::MatrixRenderInformation* matrixInformation)
@@ -65,6 +126,8 @@ void PAG::Renderer::createModels()
     auto model = (new DrawMesh())->loadModelOBJ("Assets/Models/Ajax.obj");
     model->moveGeometryToOrigin(model->getModelMatrix(), 10.0f);
     _content->addNewModel(model);
+
+    this->buildFooScene();
 }
 
 void PAG::Renderer::createShaderProgram()

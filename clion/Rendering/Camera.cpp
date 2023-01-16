@@ -58,6 +58,7 @@ void PAG::Camera::track(Model3D* model)
 void PAG::Camera::saveCamera()
 {
 	delete _backupCamera;
+	_backupCamera = nullptr;
 
 	_backupCamera = new PAG::Camera(*this);
 }

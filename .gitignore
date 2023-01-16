@@ -41,6 +41,7 @@ x86/*
 *.pdb
 *.tlog
 *.db
+vs/Source/x64/*
 
 # JetBrains
 *.json
@@ -55,7 +56,7 @@ clion/cmake-build-release-mingw/*
 # Models
 *.bin
 *.mtl
-Source/*.png
+vs/Source/*.png
 *.jpeg
 *.jpg
 *.zip

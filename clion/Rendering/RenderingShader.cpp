@@ -29,8 +29,8 @@ GLuint PAG::RenderingShader::createShaderProgram(const char* filename)
 
 	// [Vertex shader]
 	char fileNameComplete[256];
-	strcpy_s(fileNameComplete, filename);
-	strcat_s(fileNameComplete, "-vs.glsl");
+	strcpy(fileNameComplete, filename);
+	strcat(fileNameComplete, "-vs.glsl");
 
 	const GLuint vertexShaderObject = compileShader(fileNameComplete, GL_VERTEX_SHADER);
 	if (vertexShaderObject == 0) {
@@ -38,8 +38,8 @@ GLuint PAG::RenderingShader::createShaderProgram(const char* filename)
 	}
 
 	// [Fragment shader]
-	strcpy_s(fileNameComplete, filename);
-	strcat_s(fileNameComplete, "-fs.glsl");
+	strcpy(fileNameComplete, filename);
+	strcat(fileNameComplete, "-fs.glsl");
 
 	const GLuint fragmentShaderObject = compileShader(fileNameComplete, GL_FRAGMENT_SHADER);
 	if (fragmentShaderObject == 0) {
@@ -47,8 +47,8 @@ GLuint PAG::RenderingShader::createShaderProgram(const char* filename)
 	}
 
 	// [Geometry shader, optional]
-	strcpy_s(fileNameComplete, filename);
-	strcat_s(fileNameComplete, "-gs.glsl");
+	strcpy(fileNameComplete, filename);
+	strcat(fileNameComplete, "-gs.glsl");
 	const GLuint geometryShaderObject = compileShader(fileNameComplete, GL_GEOMETRY_SHADER);
 
 	glAttachShader(_handler, vertexShaderObject);						// Associate shaders with shader program

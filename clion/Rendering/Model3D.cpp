@@ -4,11 +4,13 @@
 // Static properties
 
 std::string PAG::Model3D::CHECKER_PATTERN_PATH = "Assets/Textures/Checker.png";
+std::unordered_set<std::string> PAG::Model3D::USED_NAMES;
 
 // Public methods
 
 PAG::Model3D::Model3D(): _modelMatrix(1.0f)
 {
+    this->overrideModelName();
 }
 
 PAG::Model3D::~Model3D()
@@ -68,6 +70,8 @@ void PAG::Model3D::draw(RenderingShader* shader, MatrixRenderInformation* matrix
 
                 break;
             }
+
+            if (!component->_activeRendering[rendering]) continue;
             
             shader->setUniform("mModelViewProj", matrixInformation->multiplyMatrix(MatrixRenderInformation::VIEW_PROJECTION, this->_modelMatrix));
             shader->applyActiveSubroutines();
@@ -92,28 +96,69 @@ void PAG::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
     _modelMatrix = glm::scale(glm::mat4(1.0f), scale) * glm::translate(glm::mat4(1.0f), translate) * origMatrix;
 }
 
-void PAG::Model3D::setLineColor(const vec3& color)
+PAG::Model3D* PAG::Model3D::overrideModelName()
+{
+    std::string className = typeid(*this).name();
+    std::string classTarget = "class ";
+    size_t classIndex = className.find(classTarget);
+    if (classIndex != std::string::npos)
+    {
+        className = className.substr(classIndex + classTarget.size(), className.size() - classIndex - classTarget.size());
+    }
+
+    unsigned modelIdx = 0;
+    bool nameValid = false;
+
+    while (!nameValid)
+    {
+        this->_name = className + " " + std::to_string(modelIdx);
+        nameValid = USED_NAMES.find(this->_name) == USED_NAMES.end();
+        ++modelIdx;
+    }
+
+    USED_NAMES.insert(this->_name);
+
+    return this;
+}
+
+PAG::Model3D* PAG::Model3D::setLineColor(const vec3& color)
 {
     for (auto& component : _components)
     {
         component->_material._lineColor = color;
     }
+
+    return this;
 }
 
-void PAG::Model3D::setPointColor(const vec3& color)
+PAG::Model3D* PAG::Model3D::setPointColor(const vec3& color)
 {
     for (auto& component : _components)
     {
         component->_material._pointColor = color;
     }
+
+    return this;
 }
 
-void PAG::Model3D::setTriangleColor(const vec4& color)
+PAG::Model3D* PAG::Model3D::setTriangleColor(const vec4& color)
 {
     for (auto& component : _components)
     {
         component->_material._kdColor = color;
     }
+
+    return this;
+}
+
+PAG::Model3D* PAG::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool visible)
+{
+    for (auto& component : _components)
+    {
+        component->_activeRendering[topology] = visible;
+    }
+
+    return this;
 }
 
 // Private methods
@@ -260,16 +305,16 @@ void PAG::Model3D::Component::generateWireframe()
         return false;
     };
 
-    const size_t numTriangles = this->_indices[VAO::IBO_TRIANGLE].size();
+    const size_t numIndices = this->_indices[VAO::IBO_TRIANGLE].size();
 
-    for (size_t i = 0; i < numTriangles; i += 3)
+    for (size_t i = 0; i < numIndices; i += 4)
     {
-        for (size_t j = i; (j <= (i + 1)) && (j < numTriangles - 1); ++j)
+        for (size_t j = 0; j < 3; ++j)
         {
-            if (!isIncluded(this->_indices[VAO::IBO_TRIANGLE][j], this->_indices[VAO::IBO_TRIANGLE][j + 1]))
+            if (!isIncluded(this->_indices[VAO::IBO_TRIANGLE][i + j], this->_indices[VAO::IBO_TRIANGLE][(j + 1) % 3 + i]))
             {
-                this->_indices[VAO::IBO_LINE].push_back(this->_indices[VAO::IBO_TRIANGLE][j]);
-                this->_indices[VAO::IBO_LINE].push_back(this->_indices[VAO::IBO_TRIANGLE][j + 1]);
+                this->_indices[VAO::IBO_LINE].push_back(this->_indices[VAO::IBO_TRIANGLE][i + j]);
+                this->_indices[VAO::IBO_LINE].push_back(this->_indices[VAO::IBO_TRIANGLE][(j + 1) % 3 + i]);
                 this->_indices[VAO::IBO_LINE].push_back(RESTART_PRIMITIVE_INDEX);
             }
         }

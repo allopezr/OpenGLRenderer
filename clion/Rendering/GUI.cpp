@@ -70,7 +70,7 @@ void PAG::GUI::loadFonts()
 	ImGuiIO& io = ImGui::GetIO();
 
 	std::copy_n("Lato", 5, cfg.Name);
-	io.Fonts->AddFontFromMemoryCompressedBase85TTF(lato_compressed_data_base85, 13.0f, &cfg);
+	io.Fonts->AddFontFromMemoryCompressedBase85TTF(LatoFont::lato_compressed_data_base85, 13.0f, &cfg);
 
 	static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
 	cfg.MergeMode = true;
@@ -311,7 +311,7 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 		{
 			for (int compIdx = 0; compIdx < sceneContent->_model[modelIdx]->_components.size(); ++compIdx)
 			{
-				const std::string compName = "Model " + std::to_string(modelIdx) + ", " + "Comp. " + std::to_string(compIdx);
+				const std::string compName = sceneContent->_model[modelIdx]->getName() + ", " + "Comp. " + std::to_string(compIdx);
 				if (ImGui::Selectable(compName.c_str(), _modelCompSelected == sceneContent->_model[modelIdx]->_components[compIdx].get()))
 				{
 					_modelCompSelected = sceneContent->_model[modelIdx]->_components[compIdx].get();
@@ -348,6 +348,12 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 			ImGui::Text("Topology");
 			ImGui::Separator();
 
+			static const char* topologyTitle[] = { "Point Cloud", "Wireframe", "Triangle Mesh" };
+			for (int topologyIdx = 0; topologyIdx < VAO::NUM_IBOS; ++topologyIdx)
+			{
+				ImGui::Checkbox(topologyTitle[topologyIdx], &_modelCompSelected->_activeRendering[topologyIdx]);
+				if (topologyIdx < VAO::NUM_IBOS - 1) ImGui::SameLine(0, 10);
+			}
 			ImGui::SliderFloat("Line Width", &_modelCompSelected->_lineWidth, .0f, 10.0f);
 			ImGui::SliderFloat("Point Size", &_modelCompSelected->_pointSize, .0f, 10.0f);
 

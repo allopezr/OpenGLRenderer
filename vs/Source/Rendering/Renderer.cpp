@@ -20,10 +20,10 @@ PAG::Renderer::Renderer(): _appState(nullptr), _content(nullptr), _screenshoter(
 
 void PAG::Renderer::buildFooScene()
 {
-    vec2 minBoundaries = vec2(-1.2, -.5), maxBoundaries = vec2(-minBoundaries);
+    vec2 minBoundaries = vec2(-1.5, -.5), maxBoundaries = vec2(-minBoundaries);
 
     // Spheric randomized point cloud
-    int numPoints = 200, numPointClouds = 6;
+    int numPoints = 800, numPointClouds = 6;
     
     for (int pcIdx = 0; pcIdx < numPointClouds; ++pcIdx)
     {
@@ -35,7 +35,7 @@ void PAG::Renderer::buildFooScene()
 
         for (int idx = 0; idx < numPoints; ++idx)
         {
-            vec3 rand = RandomUtilities::getUniformRandomInUnitSphere() / 3.0f + sphereCenter;
+            vec3 rand = RandomUtilities::getUniformRandomInUnitSphere() / 6.0f + sphereCenter;
             pointCloud->addPoint(Point(rand.x, rand.y));
         }
 
