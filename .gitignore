@@ -42,6 +42,7 @@ x86/*
 *.tlog
 *.db
 vs/Source/x64/*
+*.suo
 
 # JetBrains
 *.json
