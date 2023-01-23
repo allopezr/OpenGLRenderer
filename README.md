@@ -60,7 +60,7 @@ Desde la interfaz se ofrecen otras tantas funcionalidades:
     - Modificación de una única luz puntual (colores y posición en el espacio). Recordad que el objetivo de esta asignatura no es el _rendering_, por lo que nos basta con esta luz puntual que nos permitirá ver cualquier malla de triángulos situada en un punto cualquiera del espacio.
 
 <p align="center">
-    <img src="readme_assets/light_configuration.png" width=500 /></br>
+    <img src="readme_assets/light_configuration.png" width=600 /></br>
     <em>Menú de configuración de la luz puntual de la escena.</em>
 </p>
 
@@ -192,7 +192,7 @@ A tener en cuenta:
         - Color: `setPointColor`, `setLineColor`, `setTriangleColor`. Ten en cuenta que esta última recibe un `vec4` para poder modificar el alpha del modelo.
         - Visibilidad de primitivas: `setTopologyVisibility`. Recibirá un tipo de primitiva de `VAO::IBO_slots` y un booleano.
         - `moveGeometryToOrigin`: calcula la matriz de transformación que lleva un modelo, ubicado en un punto desconocido, al origen del sistema de coordenadas. Además, se puede controlar la escala para que pueda visualizarse en nuestro viewport.
-        - `overrideModelName`: por defecto, un modelo recibirá en su contructor un nombre genérico, como `Model3D 897`. No obstante, podemos personalizar este nombre automáticamente para que sea identificable en la lista de modelos (accesible mediante el menú `Settings > Models`). Ten en cuenta que el nombre de un subclase no puede obtenerse en el constructor. Por tanto, se ofrece esta posibilidad como una llamada posterior.
+        - `overrideModelName`: por defecto, un modelo recibirá en su contructor un nombre genérico, como `Model3D 8, Comp. 0`. No obstante, podemos personalizar este nombre automáticamente para que sea identificable en la lista de modelos (accesible mediante el menú `Settings > Models`). Ten en cuenta que el nombre de un subclase no puede obtenerse en el constructor. Por tanto, se ofrece esta posibilidad como una llamada posterior.
 
 <table style="margin:auto; width:80%">
 <tr>
