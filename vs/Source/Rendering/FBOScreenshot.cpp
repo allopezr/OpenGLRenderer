@@ -3,7 +3,7 @@
 
 /// [Public methods]
 
-PAG::FBOScreenshot::FBOScreenshot(const uint16_t width, const uint16_t height) :
+AlgGeom::FBOScreenshot::FBOScreenshot(const uint16_t width, const uint16_t height) :
 	FBO(width, height)
 {
 	glGenFramebuffers(1, &_id);									// Support for multisampled framebuffer
@@ -48,19 +48,19 @@ PAG::FBOScreenshot::FBOScreenshot(const uint16_t width, const uint16_t height) :
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);				// Default framebuffer
 }
 
-PAG::FBOScreenshot::~FBOScreenshot()
+AlgGeom::FBOScreenshot::~FBOScreenshot()
 {
 	glDeleteTextures(1, &_colorBufferID);
 	glDeleteRenderbuffers(1, &_mColorBufferID);
 	glDeleteRenderbuffers(1, &_mDepthBufferID);
 }
 
-void PAG::FBOScreenshot::bindFBO()
+void AlgGeom::FBOScreenshot::bindFBO()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, _multisampledFBO);			// Multisampled! Normal FBO is only used as support for this one
 }
 
-PAG::Image* PAG::FBOScreenshot::getImage() const
+AlgGeom::Image* AlgGeom::FBOScreenshot::getImage() const
 {
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, _multisampledFBO);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _id);
@@ -78,7 +78,7 @@ PAG::Image* PAG::FBOScreenshot::getImage() const
 	return image;
 }
 
-void PAG::FBOScreenshot::modifySize(const uint16_t width, const uint16_t height)
+void AlgGeom::FBOScreenshot::modifySize(const uint16_t width, const uint16_t height)
 {
 	FBO::modifySize(width, height);
 
@@ -100,7 +100,7 @@ void PAG::FBOScreenshot::modifySize(const uint16_t width, const uint16_t height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void PAG::FBOScreenshot::saveImage(const std::string& filename)
+void AlgGeom::FBOScreenshot::saveImage(const std::string& filename)
 {
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, _multisampledFBO);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _id);

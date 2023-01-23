@@ -3,7 +3,7 @@
 
 // Public methods
 
-PAG::DrawLine::DrawLine (Line &line): Model3D(), _line(line)
+AlgGeom::DrawLine::DrawLine (Line &line): Model3D(), _line(line)
 {
     //
 }

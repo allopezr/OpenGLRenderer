@@ -12,9 +12,9 @@
 #include "SceneContent.h"
 #include "Singleton.h"
 
-namespace PAG
+namespace AlgGeom
 {
-	class Renderer : public Singleton<Renderer>, public PAG::ResizeListener, public PAG::ScreenshotListener
+	class Renderer : public Singleton<Renderer>, public AlgGeom::ResizeListener, public AlgGeom::ScreenshotListener
 	{
 		friend class Singleton<Renderer>;
 
@@ -37,6 +37,7 @@ namespace PAG
 
 	public:
 		virtual ~Renderer();
+		void createCamera();
 		void createModels();
 		void createShaderProgram();
 		Camera* getCamera() { return _content->_camera[_appState->_selectedCamera].get(); }

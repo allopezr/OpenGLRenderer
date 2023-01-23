@@ -5,7 +5,7 @@
 #include "VAO.h"
 
 
-namespace PAG
+namespace AlgGeom
 {
 	struct ApplicationState
 	{

@@ -3,7 +3,7 @@
 
 #include "GuiUtilities.h"
 
-void PAG::CameraGuiAdapter::renderGuiObject()
+void AlgGeom::CameraGuiAdapter::renderGuiObject()
 {
 	bool updateMatrices = false;
 

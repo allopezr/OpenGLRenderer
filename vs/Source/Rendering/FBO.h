@@ -2,7 +2,7 @@
 
 #include "Image.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class FBO
 	{

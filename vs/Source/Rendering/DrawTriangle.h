@@ -11,7 +11,7 @@
 #include "Model3D.h"
 
 
-namespace PAG
+namespace AlgGeom
 {
     class DrawTriangle : public Model3D
     {

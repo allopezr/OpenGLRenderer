@@ -3,23 +3,23 @@
 
 #include "InputManager.h"
 
-PAG::Window::Window() : _window(nullptr)
+AlgGeom::Window::Window() : _window(nullptr)
 {
     _renderer = Renderer::getInstance();
 }
 
-void PAG::Window::releaseResources()
+void AlgGeom::Window::releaseResources()
 {
     glfwDestroyWindow(_window); // - Cerramos y destruimos la ventana de la aplicación.
     _window = nullptr;
     glfwTerminate(); // - Liberamos los recursos que ocupaba GLFW.
 }
 
-PAG::Window::~Window()
+AlgGeom::Window::~Window()
 {
 }
 
-void PAG::Window::init(const std::string& title, const uint16_t width, const uint16_t height)
+void AlgGeom::Window::init(const std::string& title, const uint16_t width, const uint16_t height)
 {
     // - Inicializa GLFW. Es un proceso que sólo debe realizarse una vez en la aplicación
     if (glfwInit() != GLFW_TRUE)
@@ -69,7 +69,7 @@ void PAG::Window::init(const std::string& title, const uint16_t width, const uin
     GUI::getInstance()->initialize(_window, 5);
 }
 
-void PAG::Window::loop()
+void AlgGeom::Window::loop()
 {
     while (!glfwWindowShouldClose(_window))
     {

@@ -1,22 +1,22 @@
 #include "stdafx.h"
 #include "FBO.h"
 
-PAG::FBO::FBO(const uint16_t width, const uint16_t height) :
+AlgGeom::FBO::FBO(const uint16_t width, const uint16_t height) :
 	_id(0), _size(width, height)
 {
 }
 
-PAG::FBO::~FBO()
+AlgGeom::FBO::~FBO()
 {
 	glDeleteFramebuffers(1, &_id);
 }
 
-void PAG::FBO::modifySize(const uint16_t width, const uint16_t height)
+void AlgGeom::FBO::modifySize(const uint16_t width, const uint16_t height)
 {
 	_size = vec2(width, height);
 }
 
-void PAG::FBO::checkFBOstate()
+void AlgGeom::FBO::checkFBOstate()
 {
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
@@ -25,7 +25,7 @@ void PAG::FBO::checkFBOstate()
 	}
 }
 
-void PAG::FBO::threadedWriteImage(std::vector<GLubyte>* pixels, const std::string& filename, const uint16_t width, const uint16_t height)
+void AlgGeom::FBO::threadedWriteImage(std::vector<GLubyte>* pixels, const std::string& filename, const uint16_t width, const uint16_t height)
 {
 	Image* image = new Image(pixels->data(), width, height, 4);
 	image->saveImage(filename);

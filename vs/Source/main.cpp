@@ -5,8 +5,8 @@
 
 int main()
 {
-    PAG::Window* window = PAG::Window::getInstance();
-    PAG::Renderer* renderer = PAG::Renderer::getInstance();
+    AlgGeom::Window* window = AlgGeom::Window::getInstance();
+    AlgGeom::Renderer* renderer = AlgGeom::Renderer::getInstance();
 
     try
     {

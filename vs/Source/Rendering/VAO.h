@@ -2,7 +2,7 @@
 
 #define RESTART_PRIMITIVE_INDEX 0xFFFFFFFF
 
-namespace PAG
+namespace AlgGeom
 {
 	class VAO
 	{

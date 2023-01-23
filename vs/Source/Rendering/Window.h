@@ -3,7 +3,7 @@
 #include "Renderer.h"
 #include "Singleton.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class Window: public Singleton<Window>
 	{

@@ -10,7 +10,7 @@
 #include "PolygonGeo.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
     class DrawPolygon : public Model3D {
     protected:

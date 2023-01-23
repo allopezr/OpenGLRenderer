@@ -2,7 +2,7 @@
 
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class DrawMesh: public Model3D
 	{

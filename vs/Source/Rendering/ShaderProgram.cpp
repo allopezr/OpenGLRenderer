@@ -3,23 +3,23 @@
 
 // Static variables initialization
 
-const std::string PAG::ShaderProgram::MODULE_HEADER = "#include";
-const std::string PAG::ShaderProgram::MODULE_FILE_CHAR_1 = "<";
-const std::string PAG::ShaderProgram::MODULE_FILE_CHAR_2 = ">";
-std::unordered_map<std::string, std::string> PAG::ShaderProgram::_moduleCode;
+const std::string AlgGeom::ShaderProgram::MODULE_HEADER = "#include";
+const std::string AlgGeom::ShaderProgram::MODULE_FILE_CHAR_1 = "<";
+const std::string AlgGeom::ShaderProgram::MODULE_FILE_CHAR_2 = ">";
+std::unordered_map<std::string, std::string> AlgGeom::ShaderProgram::_moduleCode;
 
 // Public methods
 
-PAG::ShaderProgram::ShaderProgram()
+AlgGeom::ShaderProgram::ShaderProgram()
 	: _handler(0), _linked(false), _logString("")
 {
 }
 
-PAG::ShaderProgram::~ShaderProgram()
+AlgGeom::ShaderProgram::~ShaderProgram()
 {
 }
 
-bool PAG::ShaderProgram::setSubroutineUniform(const GLenum shaderType, const std::string& subroutine, const std::string& functionName)
+bool AlgGeom::ShaderProgram::setSubroutineUniform(const GLenum shaderType, const std::string& subroutine, const std::string& functionName)
 {
 	GLint subroutineID = glGetSubroutineUniformLocation(_handler, shaderType, subroutine.c_str());
 	GLint uniformID = glGetSubroutineIndex(_handler, shaderType, functionName.c_str());
@@ -35,7 +35,7 @@ bool PAG::ShaderProgram::setSubroutineUniform(const GLenum shaderType, const std
 	return false;
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, GLfloat value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, GLfloat value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -48,7 +48,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, GLfloat value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, GLint value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, GLint value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -61,7 +61,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, GLint value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const GLuint value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const GLuint value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -74,7 +74,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const GLuint value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const mat4& value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const mat4& value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -87,7 +87,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const mat4& value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const std::vector<mat4>& values)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const std::vector<mat4>& values)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -100,7 +100,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const std::vector<m
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const vec2& value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const vec2& value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -113,7 +113,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const vec2& value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const uvec2& value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const uvec2& value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -126,7 +126,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const uvec2& value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const vec3& value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const vec3& value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -139,7 +139,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const vec3& value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::setUniform(const std::string& name, const vec4& value)
+bool AlgGeom::ShaderProgram::setUniform(const std::string& name, const vec4& value)
 {
 	GLint location = glGetUniformLocation(_handler, name.c_str());
 
@@ -152,7 +152,7 @@ bool PAG::ShaderProgram::setUniform(const std::string& name, const vec4& value)
 	return this->showErrorMessage(name);
 }
 
-bool PAG::ShaderProgram::use()
+bool AlgGeom::ShaderProgram::use()
 {
 	if ((_handler > 0) && (_linked))			// Is the program created and linked?
 	{
@@ -165,7 +165,7 @@ bool PAG::ShaderProgram::use()
 
 /// [Protected methods]
 
-GLuint PAG::ShaderProgram::compileShader(const char* filename, const GLenum shaderType)
+GLuint AlgGeom::ShaderProgram::compileShader(const char* filename, const GLenum shaderType)
 {
 	if (!fileExists(filename))
 	{
@@ -224,13 +224,13 @@ GLuint PAG::ShaderProgram::compileShader(const char* filename, const GLenum shad
 	return shaderHandler;
 }
 
-bool PAG::ShaderProgram::fileExists(const std::string& fileName)
+bool AlgGeom::ShaderProgram::fileExists(const std::string& fileName)
 {
 	std::ifstream f(fileName.c_str());
 	return f.good();
 }
 
-PAG::ShaderProgram::ShaderTypes PAG::ShaderProgram::fromOpenGLToShaderTypes(const GLenum shaderType)
+AlgGeom::ShaderProgram::ShaderTypes AlgGeom::ShaderProgram::fromOpenGLToShaderTypes(const GLenum shaderType)
 {
 	switch (shaderType)
 	{
@@ -243,7 +243,7 @@ PAG::ShaderProgram::ShaderTypes PAG::ShaderProgram::fromOpenGLToShaderTypes(cons
 	return VERTEX_SHADER;
 }
 
-bool PAG::ShaderProgram::includeLibraries(std::string& shaderContent)
+bool AlgGeom::ShaderProgram::includeLibraries(std::string& shaderContent)
 {
 	size_t pos = shaderContent.find(MODULE_HEADER);
 
@@ -287,7 +287,7 @@ bool PAG::ShaderProgram::includeLibraries(std::string& shaderContent)
 	return true;
 }
 
-bool PAG::ShaderProgram::loadFileContent(const std::string& filename, std::string& content)
+bool AlgGeom::ShaderProgram::loadFileContent(const std::string& filename, std::string& content)
 {
 	std::ifstream shaderSourceFile;
 	shaderSourceFile.open(filename);
@@ -305,7 +305,7 @@ bool PAG::ShaderProgram::loadFileContent(const std::string& filename, std::strin
 	return true;
 }
 
-bool PAG::ShaderProgram::showErrorMessage(const std::string& variableName)
+bool AlgGeom::ShaderProgram::showErrorMessage(const std::string& variableName)
 {
 	std::cerr << "Could not find shader slot for " << variableName << "!" << std::endl;
 	return false;

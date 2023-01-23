@@ -57,7 +57,13 @@ Desde la interfaz se ofrecen otras tantas funcionalidades:
 2. `Settings` > `Camera`:
     - Modificación de propiedades de la cámara y tipo de proyección.
 3. `Settings` > `Lights`: 
-    - Modificación de una única luz puntual (colores y posición en el espacio). 
+    - Modificación de una única luz puntual (colores y posición en el espacio). Recordad que el objetivo de esta asignatura no es el _rendering_, por lo que nos basta con esta luz puntual que nos permitirá ver cualquier malla de triángulos situada en un punto cualquiera del espacio.
+
+<p align="center">
+    <img src="readme_assets/light_configuration.png" width=500 /></br>
+    <em>Menú de configuración de la luz puntual de la escena.</em>
+</p>
+
 4. `Settings` > `Models`:
     - Modificación de transformación de modelo.
     - Modificación de material (puntos, líneas y triángulos).
@@ -119,3 +125,84 @@ Respecto a la topología, tendremos disponibles tres vectores (nube de puntos, m
 Además, en el menú `Settings > Models` se mostrará una lista de objetos disponibles en la escena. Por limitaciones de C++ en la herencia no es posible obtener el nombre de la clase a la que pertenece un objeto que hereda de `Model3D` en su constructor. No obstante, una vez construido es posible acceder a dicho nombre. Por tal razón, si deseamos que los objetos tengan un nombre significativo podemos hacer uso de la función `overrideModelName`.
 
 Los métodos `SET` de la clase `Model3D` se han implementado de tal manera que puedan encadenarse las llamadas en una misma línea tras construir el objeto, incluyendo operaciones como `overrideModelName`, `setPointColor`, `setLineColor` o `setTopologyVisibility`.
+
+## Gestión de escena
+
+La gestión de los elementos de la escena se llevará a cabo en `Graphics/Renderer`. Para ello, disponemos de dos métodos básicos: `createModels` y `createCamera`, donde ambos generarán modelos y cámaras que se almacenaran en una instancia de `SceneContent`. Por tanto, utilizad simplemente las funciones `create*` en el `Renderer`. 
+
+Teniendo en cuenta que la cámara puede situarse en función de los modelos, primero crearemos éstos últimos. En `buildFooScene()` tenemos un ejemplo de generación de la escena:
+
+    vec2 minBoundaries = vec2(-1.5, -.5), maxBoundaries = vec2(-minBoundaries);
+
+    // Triangle mesh
+    auto model = (new DrawMesh())->loadModelOBJ("Assets/Models/Ajax.obj");
+    model->moveGeometryToOrigin(model->getModelMatrix(), 10.0f);
+    _content->addNewModel(model);
+
+
+    // Spheric randomized point cloud
+    int numPoints = 800, numPointClouds = 6;
+    
+    for (int pcIdx = 0; pcIdx < numPointClouds; ++pcIdx)
+    {
+        PointCloud* pointCloud = new PointCloud;
+
+        for (int idx = 0; idx < numPoints; ++idx)
+        {
+            ...
+            pointCloud->addPoint(Point(rand.x, rand.y));
+        }
+
+        _content->addNewModel((new DrawPointCloud(*pointCloud))->setPointColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
+        delete pointCloud;
+    }
+
+    // Random segments
+    int numSegments = 8;
+
+    for (int segmentIdx = 0; segmentIdx < numSegments; ++segmentIdx)
+    {
+        ...
+        SegmentLine* segment = new SegmentLine(a, b);
+
+        _content->addNewModel((new DrawSegment(*segment))->setLineColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
+        delete segment;
+    }
+
+    // Random triangles
+    int numTriangles = 30;
+    float alpha = ...;
+
+    for (int triangleIdx = 0; triangleIdx < numTriangles; ++triangleIdx)
+    {
+        ...
+        Triangle* triangle = new Triangle(a, b, c);
+
+        _content->addNewModel((new DrawTriangle(*triangle))->setLineColor(RandomUtilities::getUniformRandomColor())->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f))
+            ->overrideModelName());
+        delete triangle;
+    }
+
+A tener en cuenta:
+
+- `addNewModel` recibirá un puntero de un objeto que herede de `Model3D`.
+- `_content` será la escena (no debemos modificar nada en esta clase).
+- Los `setters` de un modelo 3D se han implementado como `Model3D* set*()` para poder encadenar llamadas en la misma instanciación (considerando que no será necesaria dicha instancia en nuestro `Renderer`, y por tanto, se eliminará a continuación).
+    - ¿Qué podemos modificar mediante `setters`?:
+        - Color: `setPointColor`, `setLineColor`, `setTriangleColor`. Ten en cuenta que esta última recibe un `vec4` para poder modificar el alpha del modelo.
+        - Visibilidad de primitivas: `setTopologyVisibility`. Recibirá un tipo de primitiva de `VAO::IBO_slots` y un booleano.
+        - `moveGeometryToOrigin`: calcula la matriz de transformación que lleva un modelo, ubicado en un punto desconocido, al origen del sistema de coordenadas. Además, se puede controlar la escala para que pueda visualizarse en nuestro viewport.
+        - `overrideModelName`: por defecto, un modelo recibirá en su contructor un nombre genérico, como `Model3D 897`. No obstante, podemos personalizar este nombre automáticamente para que sea identificable en la lista de modelos (accesible mediante el menú `Settings > Models`). Ten en cuenta que el nombre de un subclase no puede obtenerse en el constructor. Por tanto, se ofrece esta posibilidad como una llamada posterior.
+
+<table style="margin:auto; width:80%">
+<tr>
+    <td>
+        <img align="center" src="readme_assets/generic_names.png"/>
+    </td>
+    <td>
+        <img src="readme_assets/customized_names.png"/>
+    </td>
+</tr>
+</table>
+<em>Comparativa de listado de modelos, utilizando nombres genéricos y nombres personalizados para cada modelo (asignados automáticamente).</em>
+
