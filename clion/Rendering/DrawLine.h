@@ -10,7 +10,7 @@
 #include "Line.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
     class DrawLine : public Model3D 
     {

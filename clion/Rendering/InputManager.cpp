@@ -5,17 +5,17 @@
 
 // Static
 
-PAG::ApplicationState PAG::InputManager::_applicationState;
-const vec2 PAG::InputManager::_defaultCursorPosition = vec2(-1.0f, -1.0f);		
+AlgGeom::ApplicationState AlgGeom::InputManager::_applicationState;
+const vec2 AlgGeom::InputManager::_defaultCursorPosition = vec2(-1.0f, -1.0f);		
 
 // Public methods
 
-PAG::InputManager::InputManager(): _lastCursorPosition(_defaultCursorPosition), _leftClickPressed(false), _rightClickPressed(false)
+AlgGeom::InputManager::InputManager(): _lastCursorPosition(_defaultCursorPosition), _leftClickPressed(false), _rightClickPressed(false)
 {
 	this->buildMoveRelatedBuffers();
 }
 
-void PAG::InputManager::buildMoveRelatedBuffers()
+void AlgGeom::InputManager::buildMoveRelatedBuffers()
 {
 	_movementMultiplier = 0.05f;
 	_moveSpeedUp = 1.0f;
@@ -49,7 +49,7 @@ void PAG::InputManager::buildMoveRelatedBuffers()
 	_moves = std::vector<GLuint>(static_cast<size_t>(Events::NUM_EVENTS), 0);
 }
 
-bool PAG::InputManager::checkPanTilt(const float xPos, const float yPos)
+bool AlgGeom::InputManager::checkPanTilt(const float xPos, const float yPos)
 {
 	Camera* camera = Renderer::getInstance()->getCamera();
 
@@ -78,7 +78,7 @@ bool PAG::InputManager::checkPanTilt(const float xPos, const float yPos)
 	return false;
 }
 
-void PAG::InputManager::processPressedKeyEvent(const int key, const int mods)
+void AlgGeom::InputManager::processPressedKeyEvent(const int key, const int mods)
 {
 	Renderer* renderer = Renderer::getInstance();
 	Camera* camera = renderer->getCamera();
@@ -167,7 +167,7 @@ void PAG::InputManager::processPressedKeyEvent(const int key, const int mods)
 	}
 }
 
-void PAG::InputManager::processReleasedKeyEvent(const int key, const int mods)
+void AlgGeom::InputManager::processReleasedKeyEvent(const int key, const int mods)
 {
 	if (key == _eventKey[Events::DOLLY][0] || key == _eventKey[Events::DOLLY][1])
 	{
@@ -180,11 +180,11 @@ void PAG::InputManager::processReleasedKeyEvent(const int key, const int mods)
 	}
 }
 
-PAG::InputManager::~InputManager()
+AlgGeom::InputManager::~InputManager()
 {
 }
 
-void PAG::InputManager::init(GLFWwindow* window)
+void AlgGeom::InputManager::init(GLFWwindow* window)
 {
 	_window = window;
 
@@ -197,23 +197,23 @@ void PAG::InputManager::init(GLFWwindow* window)
     glfwSetScrollCallback(window, scrollCallback);
 }
 
-void PAG::InputManager::pushScreenshotEvent(const ScreenshotListener::ScreenshotEvent& event)
+void AlgGeom::InputManager::pushScreenshotEvent(const ScreenshotListener::ScreenshotEvent& event)
 {
 	_screenshotEvents.push_back(event);
 }
 
-void PAG::InputManager::suscribeResize(ResizeListener* listener)
+void AlgGeom::InputManager::suscribeResize(ResizeListener* listener)
 {
 	_resizeListeners.push_back(listener);
 }
 
-void PAG::InputManager::suscribeScreenshot(ScreenshotListener* listener)
+void AlgGeom::InputManager::suscribeScreenshot(ScreenshotListener* listener)
 {
 	_screenshotListeners.push_back(listener);
 }
 
 // - Esta función callback será llamada cada vez que se cambie el tamaño del área de dibujo OpenGL.
-void PAG::InputManager::framebufferSizeCallback(GLFWwindow* window, int width, int height)
+void AlgGeom::InputManager::framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	InputManager* inputManager = InputManager::getInstance();
 	for (ResizeListener* listener : inputManager->_resizeListeners)
@@ -223,7 +223,7 @@ void PAG::InputManager::framebufferSizeCallback(GLFWwindow* window, int width, i
 }
 
 // - Esta función callback será llamada cada vez que se pulse una tecla dirigida al área de dibujo OpenGL.
-void PAG::InputManager::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void AlgGeom::InputManager::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	InputManager* inputManager = InputManager::getInstance();
 
@@ -238,7 +238,7 @@ void PAG::InputManager::keyCallback(GLFWwindow* window, int key, int scancode, i
 }
 
 // - Esta función callback será llamada cada vez que se pulse algún botón del ratón sobre el área de dibujo OpenGL.
-void PAG::InputManager::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void AlgGeom::InputManager::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	if (GUI::getInstance()->isMouseActive()) return;
 
@@ -257,14 +257,14 @@ void PAG::InputManager::mouseButtonCallback(GLFWwindow* window, int button, int 
 	}
 }
 
-void PAG::InputManager::mouseCursorCallback(GLFWwindow* window, double xpos, double ypos)
+void AlgGeom::InputManager::mouseCursorCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	InputManager* inputManager = InputManager::getInstance();
 	inputManager->checkPanTilt(static_cast<float>(xpos), static_cast<float>(ypos));
 }
 
 // - Esta función callback será llamada cada vez que se mueva la rueda del ratón sobre el área de dibujo OpenGL.
-void PAG::InputManager::scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+void AlgGeom::InputManager::scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	InputManager* inputManager = InputManager::getInstance();
 	Camera* camera = Renderer::getInstance()->getCamera();
@@ -273,7 +273,7 @@ void PAG::InputManager::scrollCallback(GLFWwindow* window, double xoffset, doubl
 }
 
 // - Esta función callback será llamada cada vez que el área de dibujo OpenGL deba ser redibujada.
-void PAG::InputManager::windowRefreshCallback(GLFWwindow* window)
+void AlgGeom::InputManager::windowRefreshCallback(GLFWwindow* window)
 {
 	InputManager* inputManager = InputManager::getInstance();	
 	while (!inputManager->_screenshotEvents.empty())

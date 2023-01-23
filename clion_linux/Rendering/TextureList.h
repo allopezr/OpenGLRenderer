@@ -3,7 +3,7 @@
 #include "Singleton.h"
 #include "Texture.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class TextureList : public Singleton<TextureList>
 	{
@@ -26,8 +26,8 @@ namespace PAG
 		};
 
 	private:
-		std::unordered_map<vec4, PAG::Texture*, ColorHash, ColorEqual>	_colorTexture;
-		std::unordered_map<std::string, PAG::Texture*>					_imageTexture;
+		std::unordered_map<vec4, AlgGeom::Texture*, ColorHash, ColorEqual>	_colorTexture;
+		std::unordered_map<std::string, AlgGeom::Texture*>					_imageTexture;
 
 	private:
 		TextureList();
@@ -35,10 +35,10 @@ namespace PAG
 	public:
 		virtual ~TextureList();
 
-		PAG::Texture* getTexture(const vec4& color);
-		PAG::Texture* getTexture(const std::string& path);
-		void saveTexture(const vec4& color, PAG::Texture* texture);
-		void saveTexture(const std::string& path, PAG::Texture* texture);
+		AlgGeom::Texture* getTexture(const vec4& color);
+		AlgGeom::Texture* getTexture(const std::string& path);
+		void saveTexture(const vec4& color, AlgGeom::Texture* texture);
+		void saveTexture(const std::string& path, AlgGeom::Texture* texture);
 	};
 }
 

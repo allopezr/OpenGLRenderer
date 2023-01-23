@@ -3,21 +3,21 @@
 
 // Static properties
 
-std::string PAG::Model3D::CHECKER_PATTERN_PATH = "Assets/Textures/Checker.png";
-std::unordered_set<std::string> PAG::Model3D::USED_NAMES;
+std::string AlgGeom::Model3D::CHECKER_PATTERN_PATH = "Assets/Textures/Checker.png";
+std::unordered_set<std::string> AlgGeom::Model3D::USED_NAMES;
 
 // Public methods
 
-PAG::Model3D::Model3D(): _modelMatrix(1.0f)
+AlgGeom::Model3D::Model3D(): _modelMatrix(1.0f)
 {
     this->overrideModelName();
 }
 
-PAG::Model3D::~Model3D()
+AlgGeom::Model3D::~Model3D()
 {
 }
 
-bool PAG::Model3D::belongsModel(Component* component)
+bool AlgGeom::Model3D::belongsModel(Component* component)
 {
     for (auto& comp : _components)
     {
@@ -28,7 +28,7 @@ bool PAG::Model3D::belongsModel(Component* component)
     return false;
 }
 
-void PAG::Model3D::draw(RenderingShader* shader, MatrixRenderInformation* matrixInformation, ApplicationState* appState, GLuint primitive)
+void AlgGeom::Model3D::draw(RenderingShader* shader, MatrixRenderInformation* matrixInformation, ApplicationState* appState, GLuint primitive)
 {
     for (auto& component : _components)
     {
@@ -84,7 +84,7 @@ void PAG::Model3D::draw(RenderingShader* shader, MatrixRenderInformation* matrix
     }
 }
 
-void PAG::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
+AlgGeom::Model3D* AlgGeom::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
 {
     AABB aabb = this->getAABB();
 
@@ -94,9 +94,11 @@ void PAG::Model3D::moveGeometryToOrigin(const mat4& origMatrix, float maxScale)
     vec3 scale = (maxScale < FLT_MAX) ? ((maxScale > maxScaleAABB) ? vec3(1.0f) : vec3(maxScale / maxScaleAABB)) : vec3(1.0f);
 
     _modelMatrix = glm::scale(glm::mat4(1.0f), scale) * glm::translate(glm::mat4(1.0f), translate) * origMatrix;
+
+    return this;
 }
 
-PAG::Model3D* PAG::Model3D::overrideModelName()
+AlgGeom::Model3D* AlgGeom::Model3D::overrideModelName()
 {
     std::string className = typeid(*this).name();
     std::string classTarget = "class ";
@@ -121,7 +123,7 @@ PAG::Model3D* PAG::Model3D::overrideModelName()
     return this;
 }
 
-PAG::Model3D* PAG::Model3D::setLineColor(const vec3& color)
+AlgGeom::Model3D* AlgGeom::Model3D::setLineColor(const vec3& color)
 {
     for (auto& component : _components)
     {
@@ -131,7 +133,7 @@ PAG::Model3D* PAG::Model3D::setLineColor(const vec3& color)
     return this;
 }
 
-PAG::Model3D* PAG::Model3D::setPointColor(const vec3& color)
+AlgGeom::Model3D* AlgGeom::Model3D::setPointColor(const vec3& color)
 {
     for (auto& component : _components)
     {
@@ -141,7 +143,7 @@ PAG::Model3D* PAG::Model3D::setPointColor(const vec3& color)
     return this;
 }
 
-PAG::Model3D* PAG::Model3D::setTriangleColor(const vec4& color)
+AlgGeom::Model3D* AlgGeom::Model3D::setTriangleColor(const vec4& color)
 {
     for (auto& component : _components)
     {
@@ -151,7 +153,7 @@ PAG::Model3D* PAG::Model3D::setTriangleColor(const vec4& color)
     return this;
 }
 
-PAG::Model3D* PAG::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool visible)
+AlgGeom::Model3D* AlgGeom::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool visible)
 {
     for (auto& component : _components)
     {
@@ -163,7 +165,7 @@ PAG::Model3D* PAG::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool 
 
 // Private methods
 
-void PAG::Model3D::buildVao(Component* component)
+void AlgGeom::Model3D::buildVao(Component* component)
 {
     VAO* vao = new VAO(true);
     vao->setVBOData(component->_vertices);
@@ -173,7 +175,7 @@ void PAG::Model3D::buildVao(Component* component)
     component->_vao = vao;
 }
 
-void PAG::Model3D::loadModelBinaryFile(const std::string& path)
+void AlgGeom::Model3D::loadModelBinaryFile(const std::string& path)
 {
     std::ifstream fin(path, std::ios::in | std::ios::binary);
     if (!fin.is_open())
@@ -212,7 +214,7 @@ void PAG::Model3D::loadModelBinaryFile(const std::string& path)
     }
 }
 
-void PAG::Model3D::writeBinaryFile(const std::string& path)
+void AlgGeom::Model3D::writeBinaryFile(const std::string& path)
 {
     std::ofstream fout(path, std::ios::out | std::ios::binary);
     if (!fout.is_open())
@@ -244,7 +246,7 @@ void PAG::Model3D::writeBinaryFile(const std::string& path)
     fout.close();
 }
 
-PAG::Model3D::MatrixRenderInformation::MatrixRenderInformation()
+AlgGeom::Model3D::MatrixRenderInformation::MatrixRenderInformation()
 {
     for (mat4& matrix : _matrix)
     {
@@ -252,7 +254,7 @@ PAG::Model3D::MatrixRenderInformation::MatrixRenderInformation()
     }
 }
 
-void PAG::Model3D::MatrixRenderInformation::undoMatrix(MatrixType type)
+void AlgGeom::Model3D::MatrixRenderInformation::undoMatrix(MatrixType type)
 {
     if (_heapMatrices[type].empty())
     {
@@ -265,7 +267,7 @@ void PAG::Model3D::MatrixRenderInformation::undoMatrix(MatrixType type)
     }
 }
 
-void PAG::Model3D::Component::completeTopology()
+void AlgGeom::Model3D::Component::completeTopology()
 {
     if (!this->_indices[VAO::IBO_TRIANGLE].empty())
     {
@@ -279,7 +281,7 @@ void PAG::Model3D::Component::completeTopology()
     }
 }
 
-void PAG::Model3D::Component::generateWireframe()
+void AlgGeom::Model3D::Component::generateWireframe()
 {
     std::unordered_map<int, std::unordered_set<int>> segmentIncluded;
     static auto isIncluded = [&](int index1, int index2) -> bool
@@ -321,7 +323,7 @@ void PAG::Model3D::Component::generateWireframe()
     }
 }
 
-void PAG::Model3D::Component::generatePointCloud()
+void AlgGeom::Model3D::Component::generatePointCloud()
 {
     this->_indices[VAO::IBO_POINT].resize(this->_vertices.size());
     std::iota(this->_indices[VAO::IBO_POINT].begin(), this->_indices[VAO::IBO_POINT].end(), 0);

@@ -3,15 +3,15 @@
 
 // Public methods
 
-PAG::DrawMesh::DrawMesh(): Model3D()
+AlgGeom::DrawMesh::DrawMesh(): Model3D()
 {
 }
 
-PAG::DrawMesh::~DrawMesh()
+AlgGeom::DrawMesh::~DrawMesh()
 {
 }
 
-PAG::DrawMesh* PAG::DrawMesh::loadModelOBJ(const std::string& path)
+AlgGeom::DrawMesh* AlgGeom::DrawMesh::loadModelOBJ(const std::string& path)
 {
     std::string binaryFile = path.substr(0, path.find_last_of('.')) + BINARY_EXTENSION;
 
@@ -46,7 +46,7 @@ PAG::DrawMesh* PAG::DrawMesh::loadModelOBJ(const std::string& path)
 
 // Protected methods
 
-PAG::Model3D::Component* PAG::DrawMesh::processMesh(aiMesh* mesh, const aiScene* scene, const std::string& folder)
+AlgGeom::Model3D::Component* AlgGeom::DrawMesh::processMesh(aiMesh* mesh, const aiScene* scene, const std::string& folder)
 {
     std::vector<VAO::Vertex> vertices(mesh->mNumVertices);
     std::vector<GLuint> indices(mesh->mNumFaces * 4);
@@ -85,7 +85,7 @@ PAG::Model3D::Component* PAG::DrawMesh::processMesh(aiMesh* mesh, const aiScene*
     return component;
 }
 
-void PAG::DrawMesh::processNode(aiNode* node, const aiScene* scene, const std::string& folder)
+void AlgGeom::DrawMesh::processNode(aiNode* node, const aiScene* scene, const std::string& folder)
 {
     for (unsigned int i = 0; i < node->mNumMeshes; i++)
     {

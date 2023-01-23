@@ -3,7 +3,7 @@
 
 // Public methods
 
-PAG::DrawSegment::DrawSegment (SegmentLine &segment): Model3D(), _segment(segment)
+AlgGeom::DrawSegment::DrawSegment (SegmentLine &segment): Model3D(), _segment(segment)
 {
     Component* component = new Component;
     component->_vertices.insert(component->_vertices.end(), {

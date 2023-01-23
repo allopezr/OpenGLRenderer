@@ -3,7 +3,7 @@
 #include "ApplicationState.h"
 #include "Singleton.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class ResizeListener
 	{

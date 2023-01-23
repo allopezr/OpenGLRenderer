@@ -10,7 +10,7 @@
 #include "RayLine.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
     class DrawRay : public Model3D 
     {

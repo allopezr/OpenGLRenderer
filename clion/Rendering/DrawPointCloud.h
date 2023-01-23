@@ -10,7 +10,7 @@
 #include "PointCloud.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
     class DrawPointCloud : public Model3D 
     {

@@ -4,7 +4,7 @@
 #include "Image.h"
 #include "ShaderProgram.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class Texture
 	{
@@ -25,7 +25,7 @@ namespace PAG
 		Texture(const vec4& color);
 		virtual ~Texture();
 
-		void applyTexture(PAG::ShaderProgram* shader, const GLint id, const std::string& shaderVariable);
+		void applyTexture(AlgGeom::ShaderProgram* shader, const GLint id, const std::string& shaderVariable);
 
 		vec4 getColor() { return _color; }
 		std::string getFilename() { return _filename; }

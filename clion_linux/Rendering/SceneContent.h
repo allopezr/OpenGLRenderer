@@ -6,7 +6,7 @@
 #include "Camera.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class SceneContent
 	{

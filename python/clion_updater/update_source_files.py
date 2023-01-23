@@ -4,7 +4,7 @@ vs_folder = '../../vs/Source/'
 target_folders = ['Geometry', 'Rendering', 'Patterns', 'PrecompiledHeaders', 'Libraries', 'Fonts']
 assets_folder = 'Assets/'
 
-clion_folder = '../../clion_linux/'
+clion_folder = '../../clion/'
 debug_folder = 'cmake-build-debug-visual-studio-x64/Debug/'
 release_folder = 'cmake-build-release-visual-studio-x64/Release/'
 

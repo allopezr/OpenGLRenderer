@@ -6,7 +6,7 @@
 #include "SceneContent.h"
 #include "Singleton.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class GUI: public Singleton<GUI>
 	{

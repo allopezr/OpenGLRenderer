@@ -13,14 +13,20 @@
 
 // Public methods
 
-PAG::Renderer::Renderer(): _appState(nullptr), _content(nullptr), _screenshoter(nullptr), _triangleShader(nullptr), _lineShader(nullptr), _pointShader(nullptr)
+AlgGeom::Renderer::Renderer(): _appState(nullptr), _content(nullptr), _screenshoter(nullptr), _triangleShader(nullptr), _lineShader(nullptr), _pointShader(nullptr)
 {
     _gui = GUI::getInstance();
 }
 
-void PAG::Renderer::buildFooScene()
+void AlgGeom::Renderer::buildFooScene()
 {
     vec2 minBoundaries = vec2(-1.5, -.5), maxBoundaries = vec2(-minBoundaries);
+
+    // Triangle mesh
+    auto model = (new DrawMesh())->loadModelOBJ("Assets/Models/Ajax.obj");
+    model->moveGeometryToOrigin(model->getModelMatrix(), 10.0f);
+    _content->addNewModel(model);
+
 
     // Spheric randomized point cloud
     int numPoints = 800, numPointClouds = 6;
@@ -74,7 +80,7 @@ void PAG::Renderer::buildFooScene()
     }
 }
 
-void PAG::Renderer::renderLine(Model3D::MatrixRenderInformation* matrixInformation)
+void AlgGeom::Renderer::renderLine(Model3D::MatrixRenderInformation* matrixInformation)
 {
     _lineShader->use();
 
@@ -84,7 +90,7 @@ void PAG::Renderer::renderLine(Model3D::MatrixRenderInformation* matrixInformati
     }
 }
 
-void PAG::Renderer::renderPoint(Model3D::MatrixRenderInformation* matrixInformation)
+void AlgGeom::Renderer::renderPoint(Model3D::MatrixRenderInformation* matrixInformation)
 {
     _pointShader->use();
 
@@ -94,7 +100,7 @@ void PAG::Renderer::renderPoint(Model3D::MatrixRenderInformation* matrixInformat
     }
 }
 
-void PAG::Renderer::renderTriangle(Model3D::MatrixRenderInformation* matrixInformation)
+void AlgGeom::Renderer::renderTriangle(Model3D::MatrixRenderInformation* matrixInformation)
 {
     _triangleShader->use();
     this->transferLightUniforms(_triangleShader);
@@ -106,7 +112,7 @@ void PAG::Renderer::renderTriangle(Model3D::MatrixRenderInformation* matrixInfor
     }
 }
 
-void PAG::Renderer::transferLightUniforms(RenderingShader* shader)
+void AlgGeom::Renderer::transferLightUniforms(RenderingShader* shader)
 {
     shader->setUniform("lightPosition", _appState->_lightPosition);
     shader->setUniform("Ia", _appState->_Ia);
@@ -116,28 +122,33 @@ void PAG::Renderer::transferLightUniforms(RenderingShader* shader)
 
 // Private methods
 
-PAG::Renderer::~Renderer()
+AlgGeom::Renderer::~Renderer()
 {
     delete _screenshoter;
 }
 
-void PAG::Renderer::createModels()
+void AlgGeom::Renderer::createCamera()
 {
-    auto model = (new DrawMesh())->loadModelOBJ("Assets/Models/Ajax.obj");
-    model->moveGeometryToOrigin(model->getModelMatrix(), 10.0f);
-    _content->addNewModel(model);
+    if (_content->_model.size())
+    {
+        _content->_camera[_appState->_selectedCamera]->track(_content->_model[0].get());
+        _content->_camera[_appState->_selectedCamera]->saveCamera();
+    }
+}
 
+void AlgGeom::Renderer::createModels()
+{
     this->buildFooScene();
 }
 
-void PAG::Renderer::createShaderProgram()
+void AlgGeom::Renderer::createShaderProgram()
 {
     _pointShader = ShaderProgramDB::getInstance()->getShader(ShaderProgramDB::POINT_RENDERING);
     _lineShader = ShaderProgramDB::getInstance()->getShader(ShaderProgramDB::LINE_RENDERING);
     _triangleShader = ShaderProgramDB::getInstance()->getShader(ShaderProgramDB::TRIANGLE_RENDERING);
 }
 
-void PAG::Renderer::prepareOpenGL(uint16_t width, uint16_t height, ApplicationState* appState)
+void AlgGeom::Renderer::prepareOpenGL(uint16_t width, uint16_t height, ApplicationState* appState)
 {
     _appState = appState;
     _appState->_viewportSize = ivec2(width, height);
@@ -168,12 +179,7 @@ void PAG::Renderer::prepareOpenGL(uint16_t width, uint16_t height, ApplicationSt
     _content->_camera.push_back(std::unique_ptr<Camera>(new Camera(width, height)));
     this->createShaderProgram();
     this->createModels();
-
-    if (_content->_model.size())
-    {
-        _content->_camera[_appState->_selectedCamera]->track(_content->_model[0].get());
-        _content->_camera[_appState->_selectedCamera]->saveCamera();
-    }
+    this->createCamera();
 
     // Observer
     InputManager* inputManager = InputManager::getInstance();
@@ -183,13 +189,13 @@ void PAG::Renderer::prepareOpenGL(uint16_t width, uint16_t height, ApplicationSt
     this->resizeEvent(_appState->_viewportSize.x, _appState->_viewportSize.y);
 }
 
-void PAG::Renderer::removeModel()
+void AlgGeom::Renderer::removeModel()
 {
     if (!_content->_model.empty())
         _content->_model.erase(_content->_model.end() - 1);
 }
 
-void PAG::Renderer::resizeEvent(uint16_t width, uint16_t height)
+void AlgGeom::Renderer::resizeEvent(uint16_t width, uint16_t height)
 {
     glViewport(0, 0, width, height);
 
@@ -197,7 +203,7 @@ void PAG::Renderer::resizeEvent(uint16_t width, uint16_t height)
     _content->_camera[_appState->_selectedCamera]->setRaspect(width, height);
 }
 
-void PAG::Renderer::screenshotEvent(const ScreenshotEvent& event)
+void AlgGeom::Renderer::screenshotEvent(const ScreenshotEvent& event)
 {
     if (event._type == ScreenshotListener::RGBA)
     {
@@ -213,7 +219,7 @@ void PAG::Renderer::screenshotEvent(const ScreenshotEvent& event)
     }
 }
 
-void PAG::Renderer::render(float alpha, bool renderGui, bool bindScreenshoter)
+void AlgGeom::Renderer::render(float alpha, bool renderGui, bool bindScreenshoter)
 {
     Model3D::MatrixRenderInformation matrixInformation;
     glm::mat4 bias = glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f)) * glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));

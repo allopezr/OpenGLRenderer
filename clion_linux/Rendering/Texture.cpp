@@ -3,11 +3,11 @@
 
 // [Static variables initialization]
 
-const GLuint PAG::Texture::MAG_FILTER = GL_LINEAR;
-const GLuint PAG::Texture::MIN_FILTER = GL_LINEAR_MIPMAP_NEAREST;
-const GLuint PAG::Texture::WRAP_S = GL_MIRRORED_REPEAT;
-const GLuint PAG::Texture::WRAP_T = GL_MIRRORED_REPEAT;
-const GLuint PAG::Texture::WRAP_R = GL_MIRRORED_REPEAT;
+const GLuint AlgGeom::Texture::MAG_FILTER = GL_LINEAR;
+const GLuint AlgGeom::Texture::MIN_FILTER = GL_LINEAR_MIPMAP_NEAREST;
+const GLuint AlgGeom::Texture::WRAP_S = GL_MIRRORED_REPEAT;
+const GLuint AlgGeom::Texture::WRAP_T = GL_MIRRORED_REPEAT;
+const GLuint AlgGeom::Texture::WRAP_R = GL_MIRRORED_REPEAT;
 
 /// [Public methods]
 
@@ -23,7 +23,7 @@ const GLuint PAG::Texture::WRAP_R = GL_MIRRORED_REPEAT;
 * Data: Image pixels
 */
 
-PAG::Texture::Texture(Image* image, const GLuint wrapS, const GLuint wrapT, const GLuint minFilter, const GLuint magFilter)
+AlgGeom::Texture::Texture(Image* image, const GLuint wrapS, const GLuint wrapT, const GLuint minFilter, const GLuint magFilter)
 	: _id(-1), _filename(image->getFilename()), _color(.0f)
 {
 	unsigned char* bits = image->bits();
@@ -47,7 +47,7 @@ PAG::Texture::Texture(Image* image, const GLuint wrapS, const GLuint wrapT, cons
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
-PAG::Texture::Texture(const vec4& color)
+AlgGeom::Texture::Texture(const vec4& color)
 	: _id(-1), _filename(""), _color(color)
 {
 	const int width = 1, height = 1;
@@ -67,12 +67,12 @@ PAG::Texture::Texture(const vec4& color)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 }
 
-PAG::Texture::~Texture()
+AlgGeom::Texture::~Texture()
 {
 	glDeleteTextures(1, &_id);
 }
 
-void PAG::Texture::applyTexture(PAG::ShaderProgram* shader, const GLint id, const std::string& shaderVariable)
+void AlgGeom::Texture::applyTexture(AlgGeom::ShaderProgram* shader, const GLint id, const std::string& shaderVariable)
 {
 	shader->setUniform(shaderVariable, id);
 	glActiveTexture(GL_TEXTURE0 + id);

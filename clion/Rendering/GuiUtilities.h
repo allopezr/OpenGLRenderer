@@ -1,6 +1,6 @@
 #pragma once
 
-namespace PAG 
+namespace AlgGeom 
 {
 	namespace GuiUtilities
 	{

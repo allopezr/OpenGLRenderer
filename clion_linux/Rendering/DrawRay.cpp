@@ -3,7 +3,7 @@
 
 // Public methods
 
-PAG::DrawRay::DrawRay (RayLine &ray): Model3D(), _ray(ray)
+AlgGeom::DrawRay::DrawRay (RayLine &ray): Model3D(), _ray(ray)
 {
     // 
 }

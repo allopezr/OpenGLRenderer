@@ -20,7 +20,7 @@
 #include "CameraProjection.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class Camera
 	{
@@ -34,7 +34,7 @@ namespace PAG
 		void copyCameraAttributes(const Camera* camera);
 
 	public:
-		Camera(uint16_t width, uint16_t height);
+		Camera(uint16_t width, uint16_t height, bool is2D = false);
 		Camera(const Camera& camera);
 		virtual ~Camera();
 		void reset();

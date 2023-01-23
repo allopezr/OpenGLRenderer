@@ -3,7 +3,7 @@
 #include "Camera.h"
 #include "InterfaceAdapter.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class CameraGuiAdapter : public InterfaceAdapter
 	{

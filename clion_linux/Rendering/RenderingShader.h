@@ -2,7 +2,7 @@
 
 #include "ShaderProgram.h"
 
-namespace PAG
+namespace AlgGeom
 {
 	class RenderingShader: public ShaderProgram
 	{

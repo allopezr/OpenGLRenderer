@@ -10,7 +10,7 @@
 #include "Point.h"
 #include "Model3D.h"
 
-namespace PAG
+namespace AlgGeom
 {
     class DrawPoint : public Model3D 
     {

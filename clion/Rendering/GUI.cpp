@@ -9,7 +9,7 @@
 #include "ImGuiFileDialog.h"
 #include "InputManager.h"
 
-PAG::GUI::GUI()
+AlgGeom::GUI::GUI()
 {
 	_appState = InputManager::getApplicationState();
 	_cameraGuiAdapter = new CameraGuiAdapter;
@@ -23,14 +23,14 @@ PAG::GUI::GUI()
 	for (int idx = 0; idx < NUM_GUI_MENU_BUTTONS; ++idx) _showMenuButtons[idx] = false;
 }
 
-PAG::GUI::~GUI()
+AlgGeom::GUI::~GUI()
 {
 	delete[] _showMenuButtons;
 
 	ImGui::DestroyContext();
 }
 
-void PAG::GUI::editTransform(ImGuizmo::OPERATION& operation, ImGuizmo::MODE& mode)
+void AlgGeom::GUI::editTransform(ImGuizmo::OPERATION& operation, ImGuizmo::MODE& mode)
 {
 	if (ImGui::RadioButton("Translate", operation == ImGuizmo::TRANSLATE))
 	{
@@ -64,7 +64,7 @@ void PAG::GUI::editTransform(ImGuizmo::OPERATION& operation, ImGuizmo::MODE& mod
 	}
 }
 
-void PAG::GUI::loadFonts()
+void AlgGeom::GUI::loadFonts()
 {
 	ImFontConfig cfg;
 	ImGuiIO& io = ImGui::GetIO();
@@ -83,13 +83,13 @@ void PAG::GUI::loadFonts()
 	io.Fonts->AddFontFromFileTTF("Assets/Fonts/fa-solid-900.ttf", 12.0f, &cfg, icons_ranges);
 }
 
-void PAG::GUI::loadImGUIStyle()
+void AlgGeom::GUI::loadImGUIStyle()
 {
 	ImGui::StyleColorsDark();
 	this->loadFonts();
 }
 
-void PAG::GUI::processSelectedFile(FileDialog fileDialog, const std::string& filename, SceneContent* sceneContent)
+void AlgGeom::GUI::processSelectedFile(FileDialog fileDialog, const std::string& filename, SceneContent* sceneContent)
 {
 	if (fileDialog == FileDialog::OPEN_MESH)
 	{
@@ -99,7 +99,7 @@ void PAG::GUI::processSelectedFile(FileDialog fileDialog, const std::string& fil
 	}
 }
 
-void PAG::GUI::renderGuizmo(Model3D::Component* component, SceneContent* sceneContent)
+void AlgGeom::GUI::renderGuizmo(Model3D::Component* component, SceneContent* sceneContent)
 {
 	if (component && _showMenuButtons[MenuButtons::MODELS])
 	{
@@ -129,7 +129,7 @@ void PAG::GUI::renderGuizmo(Model3D::Component* component, SceneContent* sceneCo
 	}
 }
 
-void PAG::GUI::initialize(GLFWwindow* window, const int openGLMinorVersion)
+void AlgGeom::GUI::initialize(GLFWwindow* window, const int openGLMinorVersion)
 {
 	const std::string openGLVersion = "#version 4" + std::to_string(openGLMinorVersion) + "0 core";
 
@@ -142,7 +142,7 @@ void PAG::GUI::initialize(GLFWwindow* window, const int openGLMinorVersion)
 	ImGui_ImplOpenGL3_Init(openGLVersion.c_str());
 }
 
-void PAG::GUI::render(SceneContent* sceneContent)
+void AlgGeom::GUI::render(SceneContent* sceneContent)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
@@ -202,7 +202,7 @@ void PAG::GUI::render(SceneContent* sceneContent)
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void PAG::GUI::showCameraMenu(SceneContent* sceneContent)
+void AlgGeom::GUI::showCameraMenu(SceneContent* sceneContent)
 {
 	static Camera* cameraSelected = nullptr;
 
@@ -240,7 +240,7 @@ void PAG::GUI::showCameraMenu(SceneContent* sceneContent)
 	}
 }
 
-void PAG::GUI::showFileDialog(SceneContent* sceneContent)
+void AlgGeom::GUI::showFileDialog(SceneContent* sceneContent)
 {
 	if (_fileDialog != NONE)
 	{
@@ -267,7 +267,7 @@ void PAG::GUI::showFileDialog(SceneContent* sceneContent)
 	}
 }
 
-void PAG::GUI::showLightMenu(SceneContent* sceneContent)
+void AlgGeom::GUI::showLightMenu(SceneContent* sceneContent)
 {
 	ImGui::SetNextWindowSize(ImVec2(800, 440), ImGuiCond_FirstUseEver);
 
@@ -291,7 +291,7 @@ void PAG::GUI::showLightMenu(SceneContent* sceneContent)
 	}
 }
 
-void PAG::GUI::showModelMenu(SceneContent* sceneContent)
+void AlgGeom::GUI::showModelMenu(SceneContent* sceneContent)
 {
 	ImGui::SetNextWindowSize(ImVec2(800, 440), ImGuiCond_FirstUseEver);
 
@@ -372,7 +372,7 @@ void PAG::GUI::showModelMenu(SceneContent* sceneContent)
 	ImGui::End();
 }
 
-void PAG::GUI::showRenderingMenu(SceneContent* sceneContent)
+void AlgGeom::GUI::showRenderingMenu(SceneContent* sceneContent)
 {
 	if (ImGui::Begin("Rendering Settings", &_showMenuButtons[RENDERING]))
 	{
@@ -406,7 +406,7 @@ void PAG::GUI::showRenderingMenu(SceneContent* sceneContent)
 	ImGui::End();
 }
 
-void PAG::GUI::showScreenshotMenu(SceneContent* sceneContent)
+void AlgGeom::GUI::showScreenshotMenu(SceneContent* sceneContent)
 {
 	auto fixName = [=](const std::string& name, const std::string& defaultName, const std::string& extension) -> std::string
 	{

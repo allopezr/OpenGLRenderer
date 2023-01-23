@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "TextureList.h"
 
-PAG::TextureList::TextureList()
+AlgGeom::TextureList::TextureList()
 {
 }
 
-PAG::TextureList::~TextureList()
+AlgGeom::TextureList::~TextureList()
 {
     for (auto& pair : _colorTexture)
     {
@@ -18,14 +18,14 @@ PAG::TextureList::~TextureList()
     }
 }
 
-PAG::Texture* PAG::TextureList::getTexture(const vec4& color)
+AlgGeom::Texture* AlgGeom::TextureList::getTexture(const vec4& color)
 {
-    PAG::Texture* texture = nullptr;
+    AlgGeom::Texture* texture = nullptr;
     auto it = _colorTexture.find(color);
 
     if (it == _colorTexture.end())
     {
-        texture = new PAG::Texture(color);
+        texture = new AlgGeom::Texture(color);
         _colorTexture[color] = texture;
     }
     else
@@ -34,16 +34,16 @@ PAG::Texture* PAG::TextureList::getTexture(const vec4& color)
     return texture;
 }
 
-PAG::Texture* PAG::TextureList::getTexture(const std::string& path)
+AlgGeom::Texture* AlgGeom::TextureList::getTexture(const std::string& path)
 {
-    PAG::Texture* texture = nullptr;
+    AlgGeom::Texture* texture = nullptr;
     auto it = _imageTexture.find(path);
 
     if (it == _imageTexture.end())
     {
         try
         {
-            texture = new PAG::Texture(new Image(path));
+            texture = new AlgGeom::Texture(new Image(path));
             _imageTexture[path] = texture;
         }
         catch (std::runtime_error& error)
@@ -59,12 +59,12 @@ PAG::Texture* PAG::TextureList::getTexture(const std::string& path)
     return texture;
 }
 
-void PAG::TextureList::saveTexture(const vec4& color, PAG::Texture* texture)
+void AlgGeom::TextureList::saveTexture(const vec4& color, AlgGeom::Texture* texture)
 {
     _colorTexture[color] = texture;
 }
 
-void PAG::TextureList::saveTexture(const std::string& path, PAG::Texture* texture)
+void AlgGeom::TextureList::saveTexture(const std::string& path, AlgGeom::Texture* texture)
 {
     _imageTexture[path] = texture;
 }

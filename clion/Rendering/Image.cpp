@@ -3,7 +3,7 @@
 
 #include "lodepng.h"
 
-PAG::Image::Image(const std::string& filename) : _depth(4)				// PNG depth
+AlgGeom::Image::Image(const std::string& filename) : _depth(4)				// PNG depth
 {
 	unsigned error = lodepng::decode(_image, _width, _height, filename.c_str());
 
@@ -17,7 +17,7 @@ PAG::Image::Image(const std::string& filename) : _depth(4)				// PNG depth
 	this->flipImageVertically(_image, _width, _height, _depth);				// By default it's flipped
 }
 
-PAG::Image::Image(unsigned char* image, const uint16_t width, const uint16_t height, const uint8_t depth) : _width(width), _height(height), _depth(depth)
+AlgGeom::Image::Image(unsigned char* image, const uint16_t width, const uint16_t height, const uint8_t depth) : _width(width), _height(height), _depth(depth)
 {
 	if (image)
 	{
@@ -32,11 +32,11 @@ PAG::Image::Image(unsigned char* image, const uint16_t width, const uint16_t hei
 	}
 }
 
-PAG::Image::~Image()
+AlgGeom::Image::~Image()
 {
 }
 
-void PAG::Image::flipImageVertically(std::vector<unsigned char>& image, const uint16_t width, const uint16_t height, const uint8_t depth)
+void AlgGeom::Image::flipImageVertically(std::vector<unsigned char>& image, const uint16_t width, const uint16_t height, const uint8_t depth)
 {
 	int rowSize = width * depth;
 	unsigned char* bits = image.data();
@@ -55,7 +55,7 @@ void PAG::Image::flipImageVertically(std::vector<unsigned char>& image, const ui
 	delete[] tempBuffer;
 }
 
-bool PAG::Image::saveImage(const std::string& filename)
+bool AlgGeom::Image::saveImage(const std::string& filename)
 {
 	std::vector<unsigned char> result;
 	unsigned error = lodepng::encode(result, this->_image, this->_width, this->_height);
@@ -69,7 +69,7 @@ bool PAG::Image::saveImage(const std::string& filename)
 	return false;
 }
 
-void PAG::Image::flipImageVertically()
+void AlgGeom::Image::flipImageVertically()
 {
 	Image::flipImageVertically(_image, _width, _height, _depth);
 }

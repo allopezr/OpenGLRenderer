@@ -1,6 +1,6 @@
 #pragma once
 
-namespace PAG
+namespace AlgGeom
 {
 	class CameraProjection
 	{
@@ -17,6 +17,7 @@ namespace PAG
 		{
 		public:
 			int								_cameraType;
+			bool							_2d;
 
 			vec3							_eye, _lookAt, _up;
 			float							_zNear, _zFar;

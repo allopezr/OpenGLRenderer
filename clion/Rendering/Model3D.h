@@ -15,7 +15,7 @@
 #define GLTF_EXTENSION ".gltf"
 #define OBJ_EXTENSION ".obj"
 
-namespace PAG
+namespace AlgGeom
 {
 	class Model3D
 	{
@@ -101,7 +101,7 @@ namespace PAG
 		AABB getAABB() { return _aabb.dot(_modelMatrix); }
 		mat4 getModelMatrix() { return _modelMatrix; }
 		std::string getName() { return _name; }
-		void moveGeometryToOrigin(const mat4& origMatrix = mat4(1.0f), float maxScale = FLT_MAX);
+		Model3D* moveGeometryToOrigin(const mat4& origMatrix = mat4(1.0f), float maxScale = FLT_MAX);
 		Model3D* overrideModelName();
 		Model3D* setModelMatrix(const mat4& modelMatrix) { _modelMatrix = modelMatrix; return this; }
 		Model3D* setLineColor(const vec3& color);
