@@ -53,7 +53,7 @@ void AlgGeom::Camera::track(Model3D* model)
 	AABB aabb = model->getAABB();
 
 	this->setLookAt(aabb.center());
-	this->setPosition(aabb.min() + vec3(.0f, aabb.extent().y, 1.0f) - vec3(aabb.extent().x, .0f, aabb.extent().z) * (1 + (1.0f / std::max(aabb.size().x, std::max(aabb.size().y, aabb.size().z))) * 2.0f));
+	this->setPosition(aabb.min() + vec3(.0f, aabb.extent().y, 1.0f) - vec3(aabb.extent().x, .0f, .0) * (1 + (1.0f / std::max(aabb.size().x, std::max(aabb.size().y, aabb.size().z))) * 4.0f));
 }
 
 void AlgGeom::Camera::saveCamera()
