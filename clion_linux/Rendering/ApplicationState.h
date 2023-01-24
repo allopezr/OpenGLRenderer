@@ -38,7 +38,7 @@ namespace AlgGeom
 			std::strcpy(_screenshotFilenameBuffer, "ScreenshotRGBA.png");
 			_screenshotFactor = 3.0f;
 
-			for (int i = 0; i < VAO::NUM_IBOS; ++i) _activeRendering[i] = i == VAO::IBO_TRIANGLE;
+			for (int i = 0; i < VAO::NUM_IBOS; ++i) _activeRendering[i] = /*i == VAO::IBO_TRIANGLE*/true;
 
 			_lightPosition = vec3(.0f);
 			_Ia = vec3(.6f);

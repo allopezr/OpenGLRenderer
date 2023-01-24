@@ -28,8 +28,6 @@ namespace AlgGeom
 	private:
 		Renderer();
 
-		void buildFooScene();
-
 		void renderLine(Model3D::MatrixRenderInformation* matrixInformation);
 		void renderPoint(Model3D::MatrixRenderInformation* matrixInformation);
 		void renderTriangle(Model3D::MatrixRenderInformation* matrixInformation);

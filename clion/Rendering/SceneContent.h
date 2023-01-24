@@ -20,6 +20,7 @@ namespace AlgGeom
 
 		void addNewCamera(ApplicationState* appState);
 		void addNewModel(Model3D* model);
+		void buildScenario();
 		Model3D* getModel(Model3D::Component* component);
 	};
 }
