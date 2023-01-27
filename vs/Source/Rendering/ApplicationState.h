@@ -18,7 +18,8 @@ namespace AlgGeom
 
 		// Screenshot
 		char							_screenshotFilenameBuffer[60];				
-		float							_screenshotFactor;										
+		float							_screenshotFactor;	
+		bool							_transparentScreenshot;
 
 		// Ligthing
 		vec3							_lightPosition, _Ia, _Id, _Is;	

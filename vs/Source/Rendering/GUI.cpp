@@ -421,6 +421,7 @@ void AlgGeom::GUI::showScreenshotMenu(SceneContent* sceneContent)
 	if (ImGui::Begin("Screenshot Settings", &_showMenuButtons[SCREENSHOT]))
 	{
 		ImGui::SliderFloat("Size multiplier", &_appState->_screenshotFactor, 1.0f, 10.0f);
+		ImGui::SameLine(0, 20); ImGui::Checkbox("Transparent", &_appState->_transparentScreenshot);
 		ImGui::InputText("Filename (RGB)", _appState->_screenshotFilenameBuffer, IM_ARRAYSIZE(_appState->_screenshotFilenameBuffer));
 
 		GuiUtilities::leaveSpace(2);

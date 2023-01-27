@@ -143,7 +143,7 @@ void AlgGeom::Renderer::screenshotEvent(const ScreenshotEvent& event)
         const ivec2 newSize = ivec2(_appState->_viewportSize.x * _appState->_screenshotFactor, _appState->_viewportSize.y * _appState->_screenshotFactor);
 
         this->resizeEvent(newSize.x, newSize.y);
-        this->render(.0f, false, true);
+        this->render(_appState->_transparentScreenshot ? .0f : 1.0f, false, true);
         _screenshoter->saveImage(_appState->_screenshotFilenameBuffer);
 
         this->resizeEvent(size.x, size.y);

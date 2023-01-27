@@ -153,6 +153,26 @@ AlgGeom::Model3D* AlgGeom::Model3D::setTriangleColor(const vec4& color)
     return this;
 }
 
+AlgGeom::Model3D* AlgGeom::Model3D::setLineWidth(VAO::IBO_slots topology, float width)
+{
+    for (auto& component : _components)
+    {
+        component->_lineWidth = width;
+    }
+
+    return this;
+}
+
+AlgGeom::Model3D* AlgGeom::Model3D::setPointSize(VAO::IBO_slots topology, float size)
+{
+    for (auto& component : _components)
+    {
+        component->_pointSize = size;
+    }
+
+    return this;
+}
+
 AlgGeom::Model3D* AlgGeom::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool visible)
 {
     for (auto& component : _components)
