@@ -56,12 +56,12 @@ public:
 	/**
 	*	@brief Adds the vertex in the last position (if it doesn't intersect with any other segment).
 	*/
-	bool add(Vertex& vertex);
+	bool add(const Vertex& vertex);
 
 	/**
 	*	@brief Adds the point in the last position (if it doesn't intersect with any other segment).
 	*/
-	bool add(Point& point);
+	bool add(const Point& point);
 
 	/**
 	*	@brief Checks if the Polygon is convex.
@@ -81,7 +81,7 @@ public:
 	/**
 	*	@brief Returns the vertex at an index.
 	*/
-	Vertex getVertexAt(int pos);
+	Vertex getVertexAt(int position);
 
 	/**
 	*	@brief Checks if a line intersects with the Polygon.

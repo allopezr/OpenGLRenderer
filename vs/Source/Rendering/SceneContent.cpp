@@ -2,14 +2,10 @@
 #include "SceneContent.h"
 
 #include "ChronoUtilities.h"
-#include "DrawMesh.h"
-#include "DrawPointCloud.h"
-#include "DrawSegment.h"
-#include "DrawTriangle.h"
+#include "InclDraw2D.h"
+#include "InclGeom2D.h"
 #include "PointCloud.h"
 #include "RandomUtilities.h"
-#include "SegmentLine.h"
-#include "Triangle.h"
 
 
 // ----------------------------- BUILD YOUR SCENARIO HERE -----------------------------------
@@ -58,6 +54,10 @@ void AlgGeom::SceneContent::buildScenario()
         delete segment;
     }
 
+    // Random circle
+    Circle circle (Point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x), RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y)), RandomUtilities::getUniformRandom(2.0f, 2.5f));
+    this->addNewModel((new DrawCircle(circle))->overrideModelName()->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f)));
+
     // Random triangles
     int numTriangles = 30;
     float alpha = 2 * glm::pi<float>() / static_cast<float>(numTriangles);
@@ -74,6 +74,27 @@ void AlgGeom::SceneContent::buildScenario()
             ->overrideModelName());
         delete triangle;
     }
+
+    // Random points
+    for (int pointIdx = 0; pointIdx < numPoints; ++pointIdx)
+    {
+        Point point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x), RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x));
+        this->addNewModel((new DrawPoint(point))->setPointColor(RandomUtilities::getUniformRandomColor())->overrideModelName());
+    }
+
+    // Polygon
+    float polygonAngle = .0f;
+    constexpr float polygonAlpha = 2.0f * glm::pi<float>() / 5.0f;
+    Polygon* polygon = new Polygon;
+
+    while (polygonAngle < 2.0f * glm::pi<float>())
+    {
+        polygon->add(Point(std::cos(polygonAngle), std::sin(polygonAngle)));
+        polygonAngle += polygonAlpha;
+    }
+
+    this->addNewModel((new DrawPolygon(*polygon))->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f))->overrideModelName()->setModelMatrix(glm::rotate(mat4(1.0f), (glm::abs(4 * polygonAlpha - glm::pi<float>() / 2.0f * 3.0f)), vec3(.0f, .0f, 1.0f))));
+    delete polygon;
 }
 
 

@@ -269,6 +269,7 @@
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\CameraGuiAdapter.cpp" />
     <ClCompile Include="Rendering\CameraProjection.cpp" />
+    <ClCompile Include="Rendering\DrawCircle.cpp" />
     <ClCompile Include="Rendering\DrawLine.cpp" />
     <ClCompile Include="Rendering\DrawMesh.cpp" />
     <ClCompile Include="Rendering\DrawPoint.cpp" />
@@ -342,6 +343,7 @@
     <ClInclude Include="Rendering\Camera.h" />
     <ClInclude Include="Rendering\CameraGuiAdapter.h" />
     <ClInclude Include="Rendering\CameraProjection.h" />
+    <ClInclude Include="Rendering\DrawCircle.h" />
     <ClInclude Include="Rendering\DrawLine.h" />
     <ClInclude Include="Rendering\DrawMesh.h" />
     <ClInclude Include="Rendering\DrawPoint.h" />

@@ -31,7 +31,7 @@ Polygon::~Polygon()
 {
 }
 
-bool Polygon::add(Vertex & vertex)
+bool Polygon::add(const Vertex & vertex)
 {
 	size_t index = _vertices.size();
 
@@ -44,18 +44,18 @@ bool Polygon::add(Vertex & vertex)
 	return true;
 }
 
-bool Polygon::add(Point & point)
+bool Polygon::add(const Point & point)
 {
 	Vertex vertex(point);
 
 	return this->add(vertex);
 }
 
-Vertex Polygon::getVertexAt(int pos)
+Vertex Polygon::getVertexAt(int position)
 {
-	if (pos >= 0 && pos < _vertices.size()) 
+	if (position >= 0 && position < _vertices.size())
 	{
-		return _vertices[pos];
+		return _vertices[position];
 	}
 	else 
 	{

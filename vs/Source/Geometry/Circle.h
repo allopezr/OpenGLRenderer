@@ -26,7 +26,7 @@ public:
     /**
     *	@brief Constructor.
 	*/
-    Circle(Point &center, double radius): _center(center), _radius(_radius) { }
+    Circle(const Point &center, double radius): _center(center), _radius(radius) { }
 
     /**
 	*	@brief Copy constructor.
@@ -43,11 +43,16 @@ public:
     *   @param p
     *   @return true if p is inside the circle 
     */  
-    bool isInside (Point &p);
+    bool isInside (const Point &p);
     
     /**
     *   @return A polygon with circular shape.
     */
-    Polygon getPointsCircle ();
+    Polygon getPointsCircle (uint32_t numSubdivisions = 256);
+
+    /**
+    *	@brief Assignment operator (override).
+    */
+    virtual Circle& operator=(const Circle& circle);
 };
 
