@@ -107,8 +107,8 @@ namespace AlgGeom
 		Model3D* setLineColor(const vec3& color);
 		Model3D* setPointColor(const vec3& color);
 		Model3D* setTriangleColor(const vec4& color);
-		Model3D* setLineWidth(VAO::IBO_slots topology, float width);
-		Model3D* setPointSize(VAO::IBO_slots topology, float size);
+		Model3D* setLineWidth(float width);
+		Model3D* setPointSize(float size);
 		Model3D* setTopologyVisibility(VAO::IBO_slots topology, bool visible);
 	};
 }
