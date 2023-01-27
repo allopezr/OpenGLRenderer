@@ -1,7 +1,7 @@
 #pragma once
 
 /* 
- * File:   PolygonGeo.h
+ * File:   Polygon.h
  * Author: lidia
  *
  * Created on 19 de enero de 2021, 10:20
@@ -16,14 +16,14 @@
 #include "Vertex.h"
 
     
-class PolygonGeo
+class Polygon
 {
 protected:
 	std::vector<Vertex> _vertices;
 
 protected:
 	/**
-	*	@brief Checks if a vertex (not included in the PolygonGeo) creates a segment with the last vertex that collides with any other segment.
+	*	@brief Checks if a vertex (not included in the Polygon) creates a segment with the last vertex that collides with any other segment.
 	*/
 	bool intersectsWithAnySegment(Vertex& vertex);
 
@@ -31,27 +31,27 @@ public:
 	/**
 	*	@brief Default empty constructor.
 	*/
-	PolygonGeo();
+	Polygon();
 
 	/**
 	*	@brief Constructor.
 	*/
-	PolygonGeo(std::vector<Vertex>& vertices);
+	Polygon(std::vector<Vertex>& vertices);
 
 	/**
 	*	@brief Copy constructor.
 	*/
-	PolygonGeo(const PolygonGeo& PolygonGeo);
+	Polygon(const Polygon& Polygon);
 
 	/**
-	*	@brief Constructor of a PolygonGeo from a file.
+	*	@brief Constructor of a Polygon from a file.
 	*/
-	PolygonGeo(const std::string& filename);
+	Polygon(const std::string& filename);
 
 	/**
 	*	@brief Destructor.
 	*/
-	~PolygonGeo();
+	~Polygon();
 
 	/**
 	*	@brief Adds the vertex in the last position (if it doesn't intersect with any other segment).
@@ -64,7 +64,7 @@ public:
 	bool add(Point& point);
 
 	/**
-	*	@brief Checks if the PolygonGeo is convex.
+	*	@brief Checks if the Polygon is convex.
 	*/
 	bool convex();
 
@@ -74,7 +74,7 @@ public:
 	SegmentLine getEdge(int i);
 
 	/**
-	*	@brief Returns the number of vertices of the PolygonGeo.
+	*	@brief Returns the number of vertices of the Polygon.
 	*/
 	size_t getNumVertices() { return _vertices.size(); }
 
@@ -84,20 +84,20 @@ public:
 	Vertex getVertexAt(int pos);
 
 	/**
-	*	@brief Checks if a line intersects with the PolygonGeo.
-	*	@param intersection If line and PolygonGeo intersect, then this point is the intersection. Otherwise this point is not valid.
+	*	@brief Checks if a line intersects with the Polygon.
+	*	@param intersection If line and Polygon intersect, then this point is the intersection. Otherwise this point is not valid.
 	*/
 	bool intersects(Line& line, Vect2d& interseccion);
 
 	/**
-	*	@brief Checks if a rayline intersects with the PolygonGeo.
-	*	@param intersection If rayline and PolygonGeo intersect, then this point is the intersection. Otherwise this point is not valid.
+	*	@brief Checks if a rayline intersects with the Polygon.
+	*	@param intersection If rayline and Polygon intersect, then this point is the intersection. Otherwise this point is not valid.
 	*/
 	bool intersects(RayLine& ray, Vect2d& interseccion);
 
 	/**
-	*	@brief Checks if a segment intersects with the PolygonGeo.
-	*	@param intersection If PolygonGeo and segment intersect, then this point is the intersection. Otherwise this point is not valid.
+	*	@brief Checks if a segment intersects with the Polygon.
+	*	@param intersection If Polygon and segment intersect, then this point is the intersection. Otherwise this point is not valid.
 	*/
 	bool intersects(SegmentLine& segment, Vect2d& interseccion);
 
@@ -109,7 +109,7 @@ public:
 	/**
 	*	@brief Overriding cout call.
 	*/
-	friend std::ostream& operator<<(std::ostream& os, const PolygonGeo& polygon);
+	friend std::ostream& operator<<(std::ostream& os, const Polygon& polygon);
 
 	/**
 	*	@brief Returns the vertex previous to the one in the position index.
@@ -119,15 +119,15 @@ public:
 	/**
 	*	@brief Assignment operator.
 	*/
-	PolygonGeo& operator=(const PolygonGeo& PolygonGeo);
+	Polygon& operator=(const Polygon& Polygon);
 
 	/**
-	*	@brief Assuming that this is a convex PolygonGeo, this method indicates if the point p is inside the PolygonGeo.
+	*	@brief Assuming that this is a convex Polygon, this method indicates if the point p is inside the Polygon.
 	*/
 	bool pointInConvexPolygonGeo(Point& point);
 
 	/**
-	*	@brief Saves the coordinates of the PolygonGeo in file with the same format as the constructor.
+	*	@brief Saves the coordinates of the Polygon in file with the same format as the constructor.
 	*/
 	void save(const std::string& filename);
 

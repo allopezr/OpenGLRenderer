@@ -114,7 +114,7 @@
     <ClCompile Include="Geometry\PointCloud.cpp">
       <Filter>Archivos de origen\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\PolygonGeo.cpp">
+    <ClCompile Include="Geometry\Polygon.cpp">
       <Filter>Archivos de origen\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Geometry\RayLine.cpp">
@@ -284,7 +284,7 @@
     <ClInclude Include="Geometry\PointCloud.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\PolygonGeo.h">
+    <ClInclude Include="Geometry\Polygon.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Geometry\RayLine.h">

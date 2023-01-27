@@ -13,13 +13,11 @@ Point::Point(double x, double y, bool polar)
 {
 	if (!polar)
 	{
-		_x = x;
-		_y = y;
+		_x = x; _y = y;
 	} 
 	else
 	{
-		_x = y * cos(x);
-		_y = y * sin(x);
+		// XXXXXXXX
 	}
 }
 
@@ -47,7 +45,8 @@ bool Point::colinear(Point& a, Point& b)
 
 double Point::distance(Point & p)
 {
-	return std::sqrt(std::pow(p._x - _x, 2) + std::pow(p._y - _y, 2));
+	// XXXXX
+	return .0;
 }
 
 double Point::getAlpha()
@@ -93,4 +92,10 @@ double Point::slope(Point & p)
 {
 	// XXXXX
     return 0;
+}
+
+double Point::triangleArea2(Point& a, Point& b)
+{
+	// XXXXX
+	return 0.0;
 }

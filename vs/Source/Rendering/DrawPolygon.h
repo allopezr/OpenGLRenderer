@@ -1,23 +1,23 @@
 #pragma once
 
 /* 
- * File:   DrawPolygonGeo.h
+ * File:   DrawPolygon.h
  * Author: lidia
  *
  * Created on 20 de enero de 2021, 12:18
  */
 
-#include "PolygonGeo.h"
+#include "Polygon.h"
 #include "Model3D.h"
 
 namespace AlgGeom
 {
     class DrawPolygon : public Model3D {
     protected:
-        PolygonGeo _polygon;
+        Polygon _polygon;
 
     public:
-        DrawPolygon(PolygonGeo& polygon);
+        DrawPolygon(Polygon& polygon);
         DrawPolygon(const DrawPolygon& ddt) = delete;
         virtual ~DrawPolygon() {};
     };

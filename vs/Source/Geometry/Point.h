@@ -159,6 +159,6 @@ public:
 	/**
 	*	@brief Calculates the double area of the triangle formed by (this, a, b).
 	*/
-	double triangleArea2(Point& a, Point& b) { return 0; }
+	double triangleArea2(Point& a, Point& b);
 };
 

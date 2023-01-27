@@ -39,11 +39,13 @@ SegmentLine & SegmentLine::operator=(const SegmentLine & segment)
 
 bool SegmentLine::segmentIntersection(SegmentLine& l)
 {
+	// XXXX
 	return false;
 }
 
-double SegmentLine::getEquationC()
+double SegmentLine::getC()
 {
+	// XXXX
 	return 0.0;
 }
 
@@ -64,30 +66,31 @@ bool SegmentLine::equal(SegmentLine & segment)
 
 Point SegmentLine::getPoint(double t)
 {
-    //XXXX
+    // XXXX
 	return Point();
 }
 
 bool SegmentLine::impSegmentIntersection(SegmentLine& segment)
 {
-	//XXXX
+	// XXXX
     return true;
 }
 
 bool SegmentLine::isHorizontal()
 {
+	// XXXX
 	return true;
 }
 
 bool SegmentLine::isVertical()
 {
-    //XXXX
+    // XXXX
 	return true; 
 }
 
 double SegmentLine::slope()
 {
-	//XXXX   
+	// XXXX   
     return 0;
 }
 

@@ -9,13 +9,13 @@ Circle::~Circle()
 
 bool Circle::isInside(Point &p)
 { 
-    //XXXX
+    // XXXX
     return true;
 }
 
-PolygonGeo Circle:: getPointsCircle()
+Polygon Circle::getPointsCircle()
 {        
-    return PolygonGeo();
+    return Polygon();
 }
     
   

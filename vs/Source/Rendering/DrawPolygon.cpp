@@ -3,7 +3,7 @@
 
 // Public methods
 
-AlgGeom::DrawPolygon::DrawPolygon (PolygonGeo &polygon): Model3D(), _polygon(polygon) 
+AlgGeom::DrawPolygon::DrawPolygon (Polygon &polygon): Model3D(), _polygon(polygon) 
 {   
     size_t numVertices = _polygon.getNumVertices();
     Component* component = new Component;

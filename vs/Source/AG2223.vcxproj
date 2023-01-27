@@ -186,7 +186,7 @@
     <ClCompile Include="Geometry\Line.cpp" />
     <ClCompile Include="Geometry\Point.cpp" />
     <ClCompile Include="Geometry\PointCloud.cpp" />
-    <ClCompile Include="Geometry\PolygonGeo.cpp" />
+    <ClCompile Include="Geometry\Polygon.cpp" />
     <ClCompile Include="Geometry\RayLine.cpp" />
     <ClCompile Include="Geometry\SegmentLine.cpp" />
     <ClCompile Include="Geometry\Triangle.cpp" />
@@ -315,7 +315,7 @@
     <ClInclude Include="Geometry\Line.h" />
     <ClInclude Include="Geometry\Point.h" />
     <ClInclude Include="Geometry\PointCloud.h" />
-    <ClInclude Include="Geometry\PolygonGeo.h" />
+    <ClInclude Include="Geometry\Polygon.h" />
     <ClInclude Include="Geometry\RandomUtilities.h" />
     <ClInclude Include="Geometry\RayLine.h" />
     <ClInclude Include="Geometry\SegmentLine.h" />

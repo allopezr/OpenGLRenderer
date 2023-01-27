@@ -19,7 +19,26 @@ Line::~Line()
 
 double Line::distancePointLine(Vect2d& v)
 {
+	// XXXX
 	return 0.0;
+}
+
+bool Line::intersects(Line& line, Vect2d& intersection)
+{
+	// XXXX
+	return false;
+}
+
+bool Line::intersects(RayLine& rayline, Vect2d& intersection)
+{
+	// XXXX
+	return false;
+}
+
+bool Line::intersects(SegmentLine& segment, Vect2d& intersection)
+{
+	// XXXX
+	return false;
 }
 
 bool Line::incorrectSegmentIntersection(SegmentLine& l)
@@ -46,5 +65,6 @@ std::ostream& operator<<(std::ostream& os, const Line& line)
 
 bool Line::segmentIntersection(SegmentLine& l)
 {
+	// XXXX
 	return false;
 }

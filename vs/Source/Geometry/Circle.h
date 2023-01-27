@@ -8,7 +8,7 @@
  */
 
 #include "Point.h"
-#include "PolygonGeo.h"
+#include "Polygon.h"
 
 
 class Circle 
@@ -48,6 +48,6 @@ public:
     /**
     *   @return A polygon with circular shape.
     */
-    PolygonGeo getPointsCircle ();
+    Polygon getPointsCircle ();
 };
 

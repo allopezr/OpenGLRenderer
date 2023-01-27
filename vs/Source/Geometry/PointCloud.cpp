@@ -8,12 +8,12 @@ PointCloud::PointCloud()
 
 PointCloud::PointCloud(int size, float max_x, float max_y)
 {
-	//XXXX
+	// XXXX
 }
 
 PointCloud::PointCloud(const std::string& filename)
 {
-	//XXXX
+	// XXXX
 }
 
 PointCloud::~PointCloud()
@@ -27,7 +27,7 @@ void PointCloud::addPoint(const Point& p)
 
 Point PointCloud::centralPoint()
 {
-	//XXXX
+	// XXXX
     return Point();
 }
 
@@ -65,5 +65,5 @@ PointCloud & PointCloud::operator=(const PointCloud& pointCloud)
 
 void PointCloud::save(const std::string& filename)
 {
-	//XXXX
+	// XXXX
 }

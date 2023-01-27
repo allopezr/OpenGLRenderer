@@ -14,5 +14,6 @@ AlgGeom::DrawSegment::DrawSegment (SegmentLine &segment): Model3D(), _segment(se
     component->_indices[VAO::IBO_LINE].insert(component->_indices[VAO::IBO_LINE].end(), { 0, 1 });
     this->_components.push_back(std::unique_ptr<Component>(component));
 
+    component->completeTopology();
     this->buildVao(component);
 }

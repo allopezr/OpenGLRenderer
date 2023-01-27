@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "PolygonGeo.h"
+#include "Polygon.h"
 
 #include "Vertex.h"
 
@@ -17,7 +17,7 @@ Vertex::Vertex(const Point& point) : Point(point)
 	_polygon = nullptr;
 }
 
-Vertex::Vertex(const Point & point, PolygonGeo* polygon, int pos) : Point(point)
+Vertex::Vertex(const Point & point, Polygon* polygon, int pos) : Point(point)
 {
 	_position = pos;
 	_polygon = polygon;
@@ -36,11 +36,12 @@ bool Vertex::convex()
 bool Vertex::concave()
 {
 	// XXXXX
-	return 0;
+	return false;
 }
 
 Vertex Vertex::next()
 {
+	// XXXXX
 	return Vertex();
 }
 
@@ -71,6 +72,7 @@ std::ostream& operator<<(std::ostream& os, const Vertex& vertex)
 
 Vertex Vertex::previous()
 {
+	// XXXXX
 	return Vertex();
 }
 

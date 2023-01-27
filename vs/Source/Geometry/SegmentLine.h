@@ -70,7 +70,7 @@ public:
 	/**
 	*	@brief Returns the constant of the equation of the implied line: c = y-mx.
 	*/
-	double getEquationC();
+	double getC();
         
     /**
 	*	@brief Checks if a segment is different to this one.
@@ -135,7 +135,7 @@ public:
 	/**
 	*	@brief Determines whether two segments intersect in their own way, that is, when they intersect completely. Use only arithmetic.
 	*/
-	bool segmentIntersection(SegmentLine& l);
+	virtual bool segmentIntersection(SegmentLine& l);
 
 	/**
 	*	@brief Modifies the origin of the segment.

@@ -10,7 +10,7 @@
 #include "Line.h"
 #include "Point.h"
 #include "PointCloud.h"
-#include "PolygonGeo.h"
+#include "Polygon.h"
 #include "RayLine.h"
 #include "SegmentLine.h"
 #include "Triangle.h"
